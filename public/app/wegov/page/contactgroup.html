@@ -1,0 +1,20 @@
+<section >
+    <article class="ms-controller" ms-controller="contactgroup">
+        <div ms-repeat="list">
+            <br>
+            <h3 class="ui-txt-white ui-whitespace" style="background:#00a5e0">{{el.groupName}}</h3>
+            <ul class="ui-list ui-list-text">
+                <li class="ui-border-t" ms-repeat-cl="el.groups">
+                    <div class="ui-list-info">
+                        <h4 ms-css-display="cl.groupName=='区公安分局'?'block':'none'"><i class="iconfont-1" style="font-size: 1.2em">&#xe621;&nbsp;</i>{{cl.contactMan}}（{{cl.title}}）</h4>
+                        <h4 ms-css-display="cl.groupName=='区公安分局'?'none':'block'">{{cl.contactMan}}（{{cl.title}}）</h4>
+                        <p>{{cl.department}}</p>
+                    </div>
+                    <a ms-css-display="clientInfoModel.clientDetail.starLevel>=2?'block':'none'" ms-attr-href="'tel:'+cl.tel"><i class="iconfont-1" style="font-size:1.6em">&#xe602;</i></a>
+                    <i ms-css-display="clientInfoModel.clientDetail.starLevel<2?'block':'none'" class="iconfont-1" style="font-size:1.6em;color:#bbb">&#xe602;</i>
+                </li>
+            </ul>
+        </div>
+    </article>
+</section>
+<script src="pagejs/contactgroup.js"></script>

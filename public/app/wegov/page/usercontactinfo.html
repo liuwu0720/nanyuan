@@ -1,0 +1,14 @@
+<section class="ms-controller" ms-controller="usercontactinfo">
+    <article>
+        <ul class="ui-list ui-list-text">
+            <li class="ui-border-t" ms-repeat="list">
+                <div class="ui-list-info">
+                    <h4>{{el.username}}（{{el.title}}）</h4>
+                    <p>{{el.department}}</p>
+                </div>
+                <div><a ms-attr-href="'tel:'+el.mobile"><i class="iconfont-1" style="font-size: 1.6em">&#xe602;</i></a></div>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/usercontactinfo.js"></script>

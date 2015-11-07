@@ -1,0 +1,15 @@
+<section class="ms-controller" ms-controller="documents">
+    <article>
+        <section class="ui-placehold-img" ms-css-display="banner.length>0?'block':'none'">
+            <!--<span style="background-image:url(img/banner2.jpg)"></span>-->
+            <span ms-css-background-image="'url('+banner+')'"></span>
+        </section>
+        <ul class="ui-list ui-list-text ui-list-link">
+            <li class="ui-border-t" ms-repeat="list" ms-click="openDocumentsItem(el)">
+                <h4>{{el.title}}</h4>
+                <div class="ui-txt-info">{{el.publishDate | date("yyyy-MM-dd") | dateFormat}}</div>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/documents.js"></script>

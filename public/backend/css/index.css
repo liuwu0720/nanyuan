@@ -1,0 +1,491 @@
+html, body {
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #222;
+    background-color: #e7e8eb;
+}
+
+table th {
+    vertical-align: middle;
+    text-align: center !important;
+    font-weight: bold;
+}
+
+table td {
+    vertical-align: middle;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.star-box {
+    color: red;
+}
+
+.ui-table {
+    text-align: center !important;
+}
+
+.ui-table-inbox {
+    border: 1px solid #EAEAEA;
+}
+
+a:link {
+    color: #222;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #222;
+}
+
+a:visited {
+    color: #222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.ms-controller {
+    visibility: hidden;
+}
+
+/*@font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_1443281522_699276.eot'); */
+/* IE9*/
+/*
+    src: url('//at.alicdn.com/t/font_1443281522_699276.eot?#iefix') format('embedded-opentype'), */
+/* IE6-IE8 */
+/*
+    url('//at.alicdn.com/t/font_1443281522_699276.woff') format('woff'), */
+/* chrome、firefox */
+/*
+    url('//at.alicdn.com/t/font_1443281522_699276.ttf') format('truetype'), */
+/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+/*
+    url('//at.alicdn.com/t/font_1443281522_699276.svg#iconfont') format('svg'); */
+/* iOS 4.1- */
+/*
+}
+
+.iconfont{
+    font-family:"iconfont";
+    font-size:1em;
+    font-style:normal;
+}*/
+.if-2x {
+    font-size: 2em;
+}
+
+.if-3x {
+    font-size: 3em;
+}
+
+.warn {
+    color: #EA1472;
+}
+
+.success {
+    color: #3B9A69;
+}
+
+/*======================= header start====================*/
+.header {
+    width: 100%;
+    background-color: #4B5461;
+    color: #ffffff;
+}
+
+.header .wrap {
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.header .logo {
+    float: left;
+    line-height: 60px;
+}
+
+.header .logo img {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.header .head-right {
+    height: 60px;
+    float: right;
+}
+
+.header .head-right li {
+    cursor: pointer;
+}
+
+.header .head-right ul,
+.header .head-right ul li {
+    float: right;
+    display: block;
+}
+
+.header .head-right ul li {
+    line-height: 60px;
+    text-align: center;
+}
+
+.header .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    vertical-align: middle;
+}
+
+.header .split {
+    color: #d8d8d8;
+    padding: 0 4px;
+    float: right;
+    line-height: 60px;
+}
+
+/*======================= header end======================*/
+/*======================= container start=================*/
+.left-side {
+    min-height: 760px;
+    background-color: #fff;
+    border: 1px solid #e7e8eb;
+}
+
+#menu {
+    width: 210px;
+}
+
+.ui-switchable-trigger {
+    line-height: 40px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #e7e8eb;
+}
+
+.arrow {
+    position: absolute;
+    right: 0px;
+    top: 8px;
+    color: white;
+    width: 32px;
+    height: 32px;
+    background: url(../img/left-arrow.png) no-repeat;
+}
+
+.ui-switchable-active .arrow{
+    background: url(../img/down-arrow.png) no-repeat;
+}
+
+.last-trigger {
+    border-bottom: none;
+}
+
+.ui-switchable-panel {
+    border-bottom: 1px solid #ddd;
+}
+
+.ui-switchable-active {
+    border-bottom-width: 1px;
+    background-color: #969A9E;
+}
+
+.ui-switchable-trigger a {
+    display: block;
+    padding: 3px 20px;
+    color: #8d8d8d;
+    font-size: 18px;
+}
+
+.ui-switchable-active a {
+    color: #fff;
+}
+
+.ui-switchable-panel:last-child {
+    border-bottom: none;
+}
+
+.ui-switchable-panel li a {
+    display: block;
+    line-height: 34px;
+    padding-left: 72px;
+    position: relative;
+}
+
+.ui-switchable-panel li a:hover {
+    background: #f4f5f9;
+}
+
+.ui-switchable-panel li a > i {
+    color: #e7e8eb;
+    font-size: 2.5em;
+    position: absolute;
+    right: -15px;
+    top: 0px;
+    display: none;
+}
+
+.ui-switchable-panel li a.active {
+    background-color: #4078bf;
+    color: #fff;
+}
+
+.ui-switchable-panel li a.active > i {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    background: #e7e8eb;
+}
+
+.container .wrap {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 36px;
+}
+
+.container .left-side {
+    display: inline-block;
+    float: left;
+}
+
+.container .content {
+    width: 978px;
+    min-height: 760px;
+    display: inline;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    background: #fff;
+}
+
+.container .content > div {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/*======================= container end===================*/
+/*======================= footer start====================*/
+.footer {
+    clear: both;
+    background-color: #b8b9b9;
+    height: 60px;
+}
+
+.footer .content {
+    width: 1200px;
+    line-height: 60px;
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*======================= footer end======================*/
+/*======================= 机构介绍 start====================*/
+#introduction .center-left,
+#introduction .center-right {
+    float: left;
+}
+
+#introduction-page, #guide-page {
+    margin: 0px auto 40px auto;
+    width: 600px;
+}
+
+/*======================= 机构介绍 end======================*/
+/*======================= 资讯发布 start====================*/
+#list-page table td {
+    text-align: center !important;
+}
+
+#list-page .info-content {
+    text-align: left !important;
+}
+
+#list-page .action a {
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+/*======================= 资讯发布  end====================*/
+
+.holder {
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.ui-pannel-crop {
+    width: 450px;
+    min-height: 150px;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.ui-pannel-footer {
+    text-align: center;
+}
+
+.ui-pannel-footer a {
+    margin-right: 10px;
+}
+
+.ztree li {
+    padding: 2px 0px;
+}
+
+.ztree li a {
+    padding: 5px;
+    color: #7B9DB5;
+}
+
+.ztree li a.curSelectedNode {
+    padding: 5px;
+}
+
+.ztree li a:hover {
+    text-decoration: none;
+}
+
+.ztree li span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.ztree li span.button.switch, .ztree li span.button.chk {
+    margin-top: 4px;
+}
+
+.ztree li > a > span.button {
+    margin-right: 2px;
+    background-image: url(../img/department.png);
+    background-position: center !important;
+    vertical-align: top;
+    *vertical-align: middle
+}
+
+#department-page {
+    margin: 0 auto;
+}
+
+#department-page .department-toolbar {
+    margin: 0 auto 20px auto;
+    text-align: left;
+    width: 500px;
+}
+
+#department-page .department-tree {
+    background-color: whitesmoke;
+    padding: 20px 20px;
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid #E2DDDD;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#department-page .ui-label {
+    width: 120px;
+    margin-left: -130px;
+}
+
+#staff-page {
+    overflow: hidden;
+}
+
+#staff-page .staff-left, #staffEdit-page .staff-left {
+    float: left;
+    background-color: whitesmoke;
+    padding: 20px 20px;
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #E2DDDD;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#staff-page .staff-right, #staffEdit-page .staff-right {
+    float: right;
+    width: 600px;
+}
+
+#specificEdit-page .switch-candy {
+    background-color: #959698;
+}
+
+#specificEdit-page .switch-candy input[value=N]:checked + label {
+    color: #1DA5BD;
+}
+
+#specificEdit-page .switch-candy input[value=C]:checked + label {
+    color: #EC4544;
+}
+
+#specificEdit-page .switch-candy a {
+    border: 1px solid #C3BDBD;
+    background-color: #F8FDF1;
+}
+
+#settingCover-page {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#settingCover-page .cover-item {
+    margin-top: 40px;
+}
+
+#settingCover-page .cover-item .cover-title {
+    display: inline-block;
+    font-weight: bold;
+}
+
+#settingCover-page .cover-item > div, #settingCover-page .cover-item .uploader-btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 320px;
+    height: 100px;
+}
+
+#settingCover-page .cover-item .uploader-btn {
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: #C0C4C7;
+    color: whitesmoke;
+}
+
+#settingCover-page .cover-item .uploader-btn i {
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#settingCover-page .cover-item > div .cover {
+    width: 100%;
+    height: 100%;
+}
+
+#settingCover-page .cover-item > div .uploader-btn {
+
+}

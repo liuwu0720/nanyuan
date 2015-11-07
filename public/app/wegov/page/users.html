@@ -1,0 +1,55 @@
+<section class="ms-controller" ms-controller="users">
+    <article id="frameMain">
+        <div class="ui-selector-content">
+            <ul>
+                <li class="ui-selector-item active" ms-repeat="departmentList">
+                    <h3 class="ui-border-b">
+                        <p>{{el.department}}</p>
+                    </h3>
+                    <ul class="ui-list ui-border-b">
+                        <li ms-repeat-cl="el.children" ms-click="getDepartmentUsers(cl)">
+                            <div>
+                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            </div>
+                            <div class="ui-list-info ui-border-t"><h4>{{cl.department}}</h4></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article id="frameUserList" style="display:none">
+        <ul class="ui-grid-halve">
+            <li ms-repeat="list" ms-click="openUsersItem(el)">
+                <div style="background-color:white">
+                    <div class="ui-grid-halve-img">
+                        <span ms-css-background-image="'url('+el.photo+')'"></span>
+                    </div>
+                    <ul class="ui-row">
+                        <li class="ui-txt-info ui-col ui-col-80">
+                            <p>
+                                <b>&nbsp;&nbsp;{{el.username}} </b>
+                            </p>
+                            <p class="" style="font-size: 0.8em">
+                                &nbsp;&nbsp;{{el.department}}
+                            </p>
+                            <p style="font-size: 0.8em">
+                                &nbsp;&nbsp;{{el.title}}
+                            </p>
+                        </li>
+                        <li class="ui-col ui-col-20">
+                            <i class="iconfont-1" style="color:red;font-size: 1.2em" ms-css-display="el.politics=='党员'?'block':'none'">&#xe600;</i>
+                        </li>
+                    </ul>
+                    <div>
+                        <p class="ui-txt-info"></p>
+                        <p class="ui-txt-info"></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article id="frameContentDetail" style="display:none">
+    </article>
+</section>
+<script src="pagejs/users.js"></script>

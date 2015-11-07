@@ -1,0 +1,32 @@
+<section class="ms-controller" ms-controller="peoples">
+    <article id="frameMain">
+        <ul class="ui-grid-halve">
+            <li ms-repeat="list" ms-click="openPeoplesItem(el)">
+                <div style="background-color:white">
+                    <div class="ui-grid-halve-img">
+                        <span ms-css-background-image="'url('+el.photo+')'"></span>
+                    </div>
+                    <ul class="ui-row">
+                        <li class="ui-txt-info ui-col ui-col-80">
+                            <p>
+                                <b>&nbsp;&nbsp;{{el.name}} </b>
+                            </p>
+                            <p class="" style="font-size: 0.8em">
+                                &nbsp;&nbsp;{{el.department}}
+                            </p>
+                            <p style="font-size: 0.8em">
+                                &nbsp;&nbsp;{{el.title}}
+                            </p>
+                        </li>
+                        <li class="ui-col ui-col-20">
+                            <i class="iconfont-1" style="color:red;font-size: 1.2em" ms-css-display="el.politics=='党员'?'block':'none'">&#xe600;</i>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article id="frameContentDetail" style="display:none">
+    </article>
+</section>
+<script src="pagejs/peoples.js"></script>

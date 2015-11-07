@@ -1,0 +1,41 @@
+<div id="list-page">
+    <div class="toolbar">
+        <a id="status-select" class="ui-select-trigger"></a>
+    </div>
+    <div class="ui-table-container" >
+        <table class="ui-table ui-table-inbox" ><!-- 可以在class中加入ui-table-inbox或ui-table-noborder分别适应不同的情况 -->
+            <thead>
+            <tr>
+                <th style="width:200px;">问&nbsp;&nbsp;&nbsp;题</th>
+                <th >回&nbsp;&nbsp;&nbsp;答</th>
+                <th  style="width:80px;">咨询人</th>
+                <th  style="width:80px;">状&nbsp;&nbsp;&nbsp;态</th>
+                <th style="width:80px;">咨询日期</th>
+                <th style="width:80px;">回复日期</th>
+                <th style="width:100px;">操作</th>
+            </tr>
+            </thead><!-- 表头可选 -->
+            <tbody>
+                <tr ms-repeat="list">
+                    <td>{{el.questions}}</td>
+                    <td>{{el.answer}}</td>
+                    <td>{{el.username}}</td>
+                    <td ms-class="warn:el.status=='A'" ms-class-1="success:el.status=='C'"><i class="iconfont">{{el.status=="A"?"&#xe627;":"&#xe628;"}}</i>{{el.status=="A"?"未回复":"已回复"}}</td>
+                    <td>{{el.creDate | date("yyyy-MM-dd")}}</td>
+                    <td>{{el.answerDate | date("yyyy-MM-dd")}}</td>
+                    <td class="action">
+                        <a class="ui-button ui-button-swhite" ms-click="del(el.rid)" style="padding:2px 5px;"><i class="iconfont">&#xe610;</i>&nbsp;删除</a>
+                        <a class="ui-button ui-button-sgreen" ms-click="reply(el)" style="padding:2px 5px;" ms-if="el.status=='A'"><i class="iconfont">&#xe611;</i>&nbsp;回复</a>
+                    </td>
+                </tr>
+            <tr ms-if="!list.size()">
+                <td colspan="6" style="font-weight: bold;font-style: italic;color: silver;">
+                    没 有 查 询 到 相 关 记 录!
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="paging" style="margin: 20px 0px;">
+        </div>
+    </div>
+</div>

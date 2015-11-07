@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>福田综管</title>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=37342703" charset="UTF-8"></script>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/frozen.css">
+    <link rel="stylesheet" href="css/basic.css">
+    <style>
+        #frameContentDetail section{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+</head>
+
+<body class="ms-controller" ms-controller="clientInfo">
+<div id="frameMain" style="display:block">
+    <div class="ui-tab">
+        <ul class="ui-tab-nav ui-border-b">
+            <li ms-attr-class="clientInfoModel.currentTabPage==0?'current':''" ms-click="newsModel.switchType(1)" ms-click-1="clientInfoModel.setCurrentTabPage(0)">政务资讯</li>
+            <li ms-attr-class="clientInfoModel.currentTabPage==1?'current':''" ms-click="documentsModel.switchType(2)" ms-click-1="clientInfoModel.setCurrentTabPage(1)">业务宣传</li>
+            <li ms-attr-class="clientInfoModel.currentTabPage==2?'current':''" ms-click="documentsModel.switchType(1)" ms-click-1="clientInfoModel.setCurrentTabPage(2)">政策法规</li>
+        </ul>
+        <div>
+            <div ms-css-display="clientInfoModel.currentTabPage==0?'block':'none'">
+                <div id="newsScreen1" ms-include-src="{{'./page/news.html'}}">
+                </div>
+            </div>
+            <div ms-css-display="clientInfoModel.currentTabPage==1?'block':'none'">
+                <div id="documentsScreen2" ms-include-src="{{'./page/documents2.html'}}">
+                </div>
+            </div>
+            <div ms-css-display="clientInfoModel.currentTabPage==2?'block':'none'">
+                <div id="documentsScreen1" ms-include-src="{{'./page/documents.html'}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frameContentDetail" class="rich-editor" style="display:none;">
+</div>
+<br>
+
+<div width="100%" align="center" class="ui-txt-muted" style="font-size: 0.8em">技术支持：感识科技&nbsp;&nbsp;&nbsp;&nbsp;</div>
+</body>
+
+<!-- build:js1 js/1.2.ext.js -->
+<script type="text/javascript" src="../common/lib/async.js"></script>
+<script type="text/javascript" src="../common/lib/zepto.min.js"></script>
+<script type="text/javascript" src="../common/lib/frozen.js"></script>
+<!-- endbuild -->
+<!-- build:js js/1.2.min.js -->
+<script type="text/javascript" src="../common/lib/avalon.modern.js"></script>
+<script type="text/javascript" src="../common/lib/effect.cover.js"></script>
+<script type="text/javascript" src="../common/lib/qrcode.min.js"></script>
+<script type="text/javascript" src="../common/js/commonUtil.js"></script>
+<script type="text/javascript" src="../common/js/shareManager.js"></script>
+<script type="text/javascript" src="../common/js/appManager.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/screen.js"></script>
+<script type="text/javascript" src="js/clientInfo.js"></script>
+<!-- endbuild -->
+</html>

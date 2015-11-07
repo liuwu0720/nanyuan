@@ -1,0 +1,43 @@
+<article ms-controller="userCenter">
+    <ul class="ui-list ui-list-function ui-border-tb">
+        <li>
+            <div class="ui-avatar">
+                <span ms-css-background-image="'url('+clientInfoModel.clientDetail.headimgurl+')'"></span>
+            </div>
+            <div class="ui-list-info ui-border-t">
+                <h4>{{clientInfoModel.clientDetail.dusername}}</h4>
+                <h4>{{clientInfoModel.clientDetail.department}}</h4>
+            </div>
+            <div class="ui-btn" ms-click="clearBind()">解除绑定</div>
+        </li>
+    </ul>
+    <br>
+    <div class="ui-form ui-border-t">
+        <form action="#">
+            <div class="ui-form-item ui-form-item-l ui-border-b">
+                <label class="ui-border-r">
+                    原密码
+                </label>
+                <input type="password" placeholder="请输入本账户原来的密码" ms-duplex="oldPassword">
+            </div>
+            <div class="ui-form-item ui-form-item-l ui-border-b">
+                <label class="ui-border-r">
+                    新密码
+                </label>
+                <input type="password" placeholder="请输入需要重新设置的密码" ms-duplex="newPassword1">
+            </div>
+            <div class="ui-form-item ui-form-item-l ui-border-b">
+                <label class="ui-border-r">
+                    重新输入
+                </label>
+                <input type="password" placeholder="请再次输入需要重新设置的密码" ms-duplex="newPassword2">
+            </div>
+        </form>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg ui-btn-primary" ms-click="changePassword()">
+                修改密码
+            </button>
+        </div>
+    </div>
+</article>
+<script src="pagejs/userCenter.js"></script>

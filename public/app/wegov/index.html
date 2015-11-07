@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title></title>
+
+	<style type="text/css">
+	body{
+		background: url(./img/bg.png) repeat ;
+	}
+		.container{
+			width:250px;
+			height: 250px;
+			margin: 150px auto;
+			position: relative;
+			//border:1px solid green;
+		}
+
+		.center{
+			width:125px;
+			height:125px;
+			border-radius: 125px;
+			position: absolute;
+			left: 62.5px;
+			top: 62.5px;
+			
+		}
+
+		.arround{
+			width:250px;
+			height: 250px;
+			position: relative;
+			//margin:50px auto;
+			//border:1px solid blue;
+		}
+
+		.menu{
+			width:75px;
+			height:75px;
+			border-radius: 75px;
+			position:absolute;
+			display: inline-block;
+			background:green;
+			color: #fff;
+			font-weight: bold;;
+			text-align: center;
+			line-height: 75px;
+		}
+
+		.menu-1{
+			top: 0px;
+			left:0px;
+		}
+
+		.menu-2{
+			top: 0px;
+			right:0px;
+		}
+		.menu-3{
+			bottom: -37.5px;
+			right:50%;
+		}
+
+		.circle-around{
+			-webkit-animation: rotate 30s linear infinite;
+			-moz-animation: rotate 30s linear infinite;
+			-o-animation: rotate 30s linear infinite;
+			animation: rotate 30s linear infinite;
+		}
+
+		.circle-center{
+			-webkit-animation: rotate-2 40s linear infinite;
+			-moz-animation: rotate-2 40s linear infinite;
+			-o-animation: rotate-2 40s linear infinite;
+			animation: rotate-2 40s linear infinite;
+		}
+
+		
+
+		@-webkit-keyframes rotate{
+			from{-webkit-transform: rotate(0deg)}
+			to{-webkit-transform: rotate(360deg)}
+		}
+
+		@-moz-keyframes rotate{
+			from{-moz-transform: rotate(0deg)
+			}
+			to{-moz-transform: rotate(359deg)}
+		}
+		@-o-keyframes rotate{
+			from{-o-transform: rotate(0deg)}
+			to{-o-transform: rotate(359deg)}
+		}
+		@keyframes rotate{
+			from{transform: rotate(0deg)}
+			to{transform: rotate(359deg)}
+		}
+
+		@-webkit-keyframes rotate-2{
+			from{-webkit-transform: rotate(-0deg)}
+			to{-webkit-transform: rotate(-360deg)}
+		}
+
+		@-moz-keyframes rotate-2{
+			from{-moz-transform: rotate(-0deg)
+			}
+			to{-moz-transform: rotate(-359deg)}
+		}
+		@-o-keyframes rotate-2{
+			from{-o-transform: rotate(-0deg)}
+			to{-o-transform: rotate(-359deg)}
+		}
+		@keyframes rotate-2{
+			from{transform: rotate(-0deg)}
+			to{transform: rotate(-359deg)}
+		}
+		
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="arround circle-around">
+			<span src="./img/menu.jpg"  class="menu menu-1">信息咨询</span>
+			<span src="./img/menu.jpg"  class="menu menu-2">快采快报</span>
+			<span src="./img/menu.jpg"  class="menu menu-3">管理支持</span>
+			<!-- <img src="./logo-1.jpg"  class="menu">
+			<img src="./logo-1.jpg"  class="menu">
+			<img src="./logo-1.jpg"  class="menu">
+			<img src="./logo-1.jpg"  class="menu">
+			<img src="./logo-1.jpg"  class="menu"> -->
+		</div>
+		<img src="./img/logo.jpg"  class="center circle-center">
+	</div>
+</body>
+</html>

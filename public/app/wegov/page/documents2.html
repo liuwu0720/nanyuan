@@ -1,0 +1,14 @@
+<section class="ms-controller" ms-controller="documents">
+    <article>
+        <section class="ui-placehold-img">
+            <!--<span style="background-image:url(img/banner3.jpg)"></span>-->
+            <span ms-css-background-image="'url('+banner+')'"></span>
+        </section>
+        <ul class="ui-list ui-list-text ui-list-link">
+            <li class="ui-border-t" ms-repeat="list" ms-click="openDocumentsItem(el)">
+                <h4>{{el.title}}</h4>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/documents.js"></script>

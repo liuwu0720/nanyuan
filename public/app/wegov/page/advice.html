@@ -1,0 +1,27 @@
+<section class="ms-controller" ms-controller="advice">
+    <article>
+        <div class="ui-form">
+            <form action="#">
+                <div class="ui-form-item ui-form-item-pure ui-border-b">
+                    <input type="text" placeholder="请输入联系人名称" ms-duplex="currentAdvice.contact">
+                </div>
+                <div class="ui-form-item ui-form-item-pure ui-border-b">
+                    <input type="text" placeholder="请输入手机号码" ms-duplex="currentAdvice.mobile">
+                </div>
+                <div class="ui-form-item ui-form-item-pure ui-border-b">
+                    <input type="text" placeholder="请输入邮箱" ms-duplex="currentAdvice.email">
+                </div>
+                <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+                    <textarea placeholder="意见和建议详情(限150个字)" style="height:600px" ms-duplex="currentAdvice.description" maxlength="150"></textarea>
+                </div>
+            </form>
+
+            <div class="ui-btn-wrap">
+                <button class="ui-btn-lg ui-btn-primary" ms-click="addAdvice()">
+                    确定
+                </button>
+            </div>
+        </div>
+    </article>
+</section>
+<script src="pagejs/advice.js"></script>

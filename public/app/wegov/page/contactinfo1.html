@@ -1,0 +1,16 @@
+<section class="ms-controller" ms-controller="contactinfo">
+    <article>
+        <ul class="ui-list ui-list-text">
+            <li class="ui-border-t" ms-repeat="list">
+                <div class="ui-list-info">
+                    <h4>{{el.contactMan}}（{{el.title}}）</h4>
+                    <p>{{el.department}}</p>
+                    <p>地址：{{el.address}}</p>
+                    <p>电话：<a ms-attr-href="'tel:'+el.tel">{{el.tel}}</a></p>
+                </div>
+                <i class="iconfont-1" style="color:red;font-size:1.6em" ms-click="openMap(el)">&#xe60c;</i>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/contactinfo.js"></script>
