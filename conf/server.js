@@ -3,7 +3,6 @@ module.exports = {
     port: 3102,
     ipAddress: "192.168.1.24",
     host: "192.168.1.24:3102",
-    appname: "nanyuan",
     appid: "",
     appsecret: "",
     token: "",

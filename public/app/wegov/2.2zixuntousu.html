@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>南园街道办</title>
+        <script type="text/javascript" src="http://tajs.qq.com/stats?sId=37342703" charset="UTF-8"></script>
+        <link rel="stylesheet" href="css/frozen.css">
+        <link rel="stylesheet" href="css/basic.css">
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+    </head>
+    
+    <body>
+		<div>			
+			<section class="ui-container">
+				<div class="ui-tab">
+					<ul class="ui-tab-nav ui-border-b">
+						<li class="current">我要咨询</li>
+						<li>我要投诉</li>					
+					</ul>
+					<ul class="ui-tab-content" style="width:200%">
+						<li class="current">
+							<div class="ui-searchbar-wrap ui-border-b">
+								<div class="ui-searchbar ui-border-radius">
+									<i class="ui-icon-search"></i>
+									<div class="ui-searchbar-text">请输入问题关键字进行搜索</div>
+									<div class="ui-searchbar-input"><input value="" type="tel" placeholder="请输入问题关键字进行搜索" autocapitalize="off"></div>
+									<i class="ui-icon-close"></i>
+								</div>
+								<button class="ui-searchbar-cancel">搜索</button>
+							</div>														
+							<ul class="ui-list ui-list-text ui-list-link">
+								<li class="ui-border-t">
+									<h4>准生证办理流程</h4>									
+								</li>
+								<li class="ui-border-t">
+									<h4 class="ui-nowrap">准生证办理注意事项</h4>									
+								</li>
+								<li class="ui-border-t">
+									<h4 class="ui-nowrap">办理事项要携带的资料清单（准生证）</h4>									
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="ui-form">
+								<form action="#"> 
+									<div class="ui-form-item ui-form-item-r ui-border-b">
+										<div class="ui-select" style="margin-left: 0px">
+											<select>
+												<option selected>投诉类别</option>
+												<option>交通设施</option>
+												<option>宠物</option>
+											</select>
+										</div>
+									</div>								
+									<div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+										<textarea placeholder="街道等详细地址" style="height:600px"></textarea>
+									</div>
+									<div class="ui-form-item ui-form-item-pure ui-border-b">
+										<input type="text" placeholder="请输入联系人名称">																				
+									</div>
+									<div class="ui-form-item ui-form-item-pure ui-border-b">
+										<input type="text" placeholder="请输入手机号码">										
+									</div>									
+								</form>
+								
+								<div class="ui-btn-wrap">
+									<button class="ui-btn-lg ui-btn-primary">
+										确定
+									</button>
+								</div>
+							</div>
+						</li>					
+					</ul>
+				</div>	
+				<br>
+				<div width="100%" align="center" class="ui-txt-muted" style="font-size: 0.8em">技术支持：感识科技&nbsp;&nbsp;&nbsp;&nbsp;</div> 				
+			</section>					
+        </div>
+    </body>
+
+    <script src="lib/zepto.min.js"></script>
+    <script src="lib/frozen.js"></script>
+	<script>
+		window.addEventListener('load', function(){
+
+			var tab = new fz.Scroll('.ui-tab', {
+				role: 'tab'        
+			});
+
+			/* 滑动开始前 */
+			tab.on('beforeScrollStart', function(from, to) {
+				// from 为当前页，to 为下一页
+			})
+
+			/* 滑动结束 */
+			tab.on('scrollEnd', function(curPage) {
+				// curPage 当前页
+			});
+
+		})
+		
+		$('.ui-searchbar').tap(function(){
+			$('.ui-searchbar-wrap').addClass('focus');
+			$('.ui-searchbar-input input').focus();
+		});
+		$('.ui-searchbar-cancel').tap(function(){
+			$('.ui-searchbar-wrap').removeClass('focus');
+		});
+	</script>
+</html>

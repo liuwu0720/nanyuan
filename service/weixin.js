@@ -16,13 +16,13 @@ router.get('/access', function (req, res) {
     var domainId = req.param("domain");
     var state = "base";
     if (!folder) {
-        folder=cfg.appname;
+        folder=cfg.app_name;
     }
     if (!page) {
         page="index";
     }
     if(!url){
-        url="http://"+cfg.host+"/app/"+folder+"/"+page+".html?domain="+domainId;
+        url="http://"+cfg.host+"/"+folder+"/app/"+folder+"/"+page+".html?domain="+domainId;
     }
     if (type) {
         if (type == "userinfo") {

@@ -65,7 +65,7 @@ function ajaxGet(url, data, cb) {
     }catch(e){
     }
     $.ajax({
-        url: "/app"+url,
+        url: "/nanyuan/app"+url,
         type: 'GET',
         data: data,
         dataType: "json",
@@ -95,7 +95,7 @@ function ajaxPost(url, data, cb) {
     }catch(e){
     }
     $.ajax({
-        url:"/app"+url,
+        url:"/nanyuan/app"+url,
         type: 'POST',
         data: data,
         dataType: "json",
