@@ -4,7 +4,7 @@
  * Time: 下午12:37
  ******************************************************/
 var $ = require("jquery");
-var baseUrl = "/backend";
+var baseUrl = "/nanyuan/backend";
 function ajax(type, url, data, success, error) {
     $.ajax({
         type: type || "get",

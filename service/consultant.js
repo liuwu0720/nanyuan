@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ConsultantDao = require('../model/consultantDao.js');
-var consultantDao = new ConsultantDao();
+var consultantDao = require('../model/consultantDao.js');
 
 router.get("/addConsultant", function (req, res) {
     var consultant = req.param("consultant");

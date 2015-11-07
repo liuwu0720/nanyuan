@@ -1,8 +1,7 @@
 var express = require('express');
 var async=require('async');
 var router = express.Router();
-var CommonDao = require('../model/commonDao.js');
-var commonDao = new CommonDao();
+var commonDao = require('../model/commonDao.js');
 
 router.post('/validate', function (req, res) {
     var data = req.param("data");

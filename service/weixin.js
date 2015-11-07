@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var ClientDao = require('../model/clientDao.js');
-var clientDao = new ClientDao();
+var clientDao = require('../model/clientDao.js');
 var weixinUtil = require('../util/weixinUtil.js');
-var serverConfig = require('../conf/serverConfig.js');
+var cfg = require('../conf/server.js');
 var os = require('os');
 
 var LOCAL_OS = os.type();
@@ -17,13 +16,13 @@ router.get('/access', function (req, res) {
     var domainId = req.param("domain");
     var state = "base";
     if (!folder) {
-        folder=serverConfig.appname;
+        folder=cfg.appname;
     }
     if (!page) {
         page="index";
     }
     if(!url){
-        url="http://"+serverConfig.host+"/app/"+folder+"/"+page+".html?domain="+domainId;
+        url="http://"+cfg.host+"/app/"+folder+"/"+page+".html?domain="+domainId;
     }
     if (type) {
         if (type == "userinfo") {

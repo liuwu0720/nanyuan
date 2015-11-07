@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var SinglePageDao = require('../model/singlePageDao.js');
-var singlePageDao = new SinglePageDao();
+var singlePageDao = require('../model/singlePageDao.js');
 
 router.get("/retrieveContent", function (req, res) {
     var domainId=req.session.passport.user.domainId;

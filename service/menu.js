@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var weixinUtil = require('../util/weixinUtil.js');
-var MenuDao = require('../model/menuDao.js');
-var menuDao = new MenuDao();
+var menuDao = require('../model/menuDao.js');
 
 router.get("/createMenu", function (req, res) {
     var domainId=req.session.passport.user.domainId;

@@ -1,6 +1,13 @@
-var MenuDao = function () {
 
-};
+
+exports.getMenuData=function(domainId,cb){
+    var sql="select * from wg_menu where domainId= ? order by parentId";
+    excute(sql,[domainId],function(err,rows){
+        var menuData={button:null};
+        menuData.button=findSubMenuList(0,rows);
+        cb(menuData);
+    });
+}
 
 function findSubMenuList(menuId,list){
     var menuList=[];
@@ -19,16 +26,6 @@ function findSubMenuList(menuId,list){
     }
     return menuList;
 }
-
-MenuDao.prototype.getMenuData=function(domainId,cb){
-    var sql="select * from wg_menu where domainId= ? order by parentId";
-    excute(sql,[domainId],function(err,rows){
-        var menuData={button:null};
-        menuData.button=findSubMenuList(0,rows);
-        cb(menuData);
-    });
-}
-module.exports = MenuDao;
 
 
 

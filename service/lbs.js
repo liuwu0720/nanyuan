@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ipService=require('../util/ipService.js');
-var ClientDao = require('../model/clientDao.js');
-var clientDao = new ClientDao();
+var clientDao = require('../model/clientDao.js');
 
 router.get('/convertGpsToBaidu', function(req, res, next) {
     var lan = req.param("lan");

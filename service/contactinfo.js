@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ContactinfoDao = require('../model/contactinfoDao.js');
-var contactinfoDao = new ContactinfoDao();
+var contactinfoDao = require('../model/contactinfoDao.js');
 
 router.get("/retrieveList", function (req, res) {
     var type = req.param("type");

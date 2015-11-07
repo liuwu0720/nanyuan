@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var AdviceDao = require('../model/adviceDao.js');
-var adviceDao = new AdviceDao();
+var adviceDao = require('../model/adviceDao.js');
 
 router.get("/addAdvice", function (req, res) {
     var advice = req.param("advice");

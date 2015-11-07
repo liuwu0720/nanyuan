@@ -7,29 +7,18 @@
 var express = require('express');
 var router = express.Router();
 var validate = require("./validate");
-var AdminMenuDao = require("../model/adminMenuDao");
-var menuDao = new AdminMenuDao();
+var menuDao = require("../model/adminMenuDao");
 var introductionDao = require("../model/introductionDao");
-var NewsDao = require("../model/newsDao");
-var newsDao = new NewsDao();
-var DocumentDao = require("../model/documentsDao");
-var documentDao = new DocumentDao();
-var ConsultantDao = require("../model/consultantDao");
-var consultantDao = new ConsultantDao();
-var AdviceDao = require("../model/adviceDao");
-var adviceDao = new AdviceDao();
-var ContactinfoDao = require("../model/contactinfoDao");
-var contactinfoDao = new ContactinfoDao();
-var DepartmentDao = require("../model/departmentDao");
-var departmentDao = new DepartmentDao();
-var UserDao = require("../model/usersDao");
-var userDao = new UserDao();
-var PeoplesDao = require("../model/peoplesDao");
-var peoplesDao = new PeoplesDao();
-var ActivityDao = require("../model/activityDao");
-var activityDao = new ActivityDao();
-var SettingDao = require("../model/settingDao");
-var settingDao = new SettingDao();
+var newsDao = require("../model/newsDao");
+var documentDao = require("../model/documentsDao");
+var consultantDao = require("../model/consultantDao");
+var adviceDao = require("../model/adviceDao");
+var contactinfoDao = require("../model/contactinfoDao");
+var departmentDao = require("../model/departmentDao");
+var userDao = require("../model/usersDao");
+var peoplesDao = require("../model/peoplesDao");
+var activityDao = require("../model/activityDao");
+var settingDao = require("../model/settingDao");
 
 /**********************************
  * 当前登录用户角色信息以及权限

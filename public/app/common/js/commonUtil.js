@@ -29,7 +29,7 @@ function gArrayCopy(arrObj, from) {
 
 function ajaxGetBackend(url, data, cb) {
     $.ajax({
-        url: "/app"+url,
+        url: "/nanyuan/app"+url,
         type: 'GET',
         data: data,
         dataType: "json",
@@ -43,7 +43,7 @@ function ajaxGetBackend(url, data, cb) {
 
 function ajaxPostBackend(url, data, cb) {
     $.ajax({
-        url:"/app"+url,
+        url:"/nanyuan/app"+url,
         type: 'POST',
         data: data,
         dataType: "json",

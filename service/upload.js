@@ -1,14 +1,13 @@
 var express = require('express');
+var router = express.Router();
 var util = require('util');
-var PhotosDao = require('../model/photosDao.js');
-var photosDao = new PhotosDao();
 var formidable = require('formidable');
 var gm = require('gm');
 var commUtil = require('../util/commUtil');
 var weixinUtil = require('../util/weixinUtil.js');
 var fs = require('fs');
 var ffmpeg = require('ffmpeg-node');
-var router = express.Router();
+var photosDao = require('../model/photosDao.js');
 var MAX_SIZE = 1137;
 var TITLE_IMAGE_SIZE = 300;
 

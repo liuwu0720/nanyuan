@@ -1,10 +1,7 @@
 var async = require('async');
 var commUtil=require('../util/commUtil.js');
-var ClientDao = function () {
 
-};
-
-ClientDao.prototype.registerClient = function (data,domainId,cb) {
+exports.registerClient = function (data,domainId,cb) {
     var checkSql="select * from wg_client where openid=? and domainId=?";
     var insertSql="insert into wg_client set ?";
     var updateSql="update wg_client set ? where rid=?";
@@ -28,7 +25,7 @@ ClientDao.prototype.registerClient = function (data,domainId,cb) {
     });
 }
 
-ClientDao.prototype.retrieveClientInfo = function (openid,domainId,cb) {
+exports.retrieveClientInfo = function (openid,domainId,cb) {
     excute("select * from wg_domain where rid=?",[domainId], function (err, domains) {
         var sql="select c.*,u.username as dusername,u.departmentId,u.role,u.politics,d.department,d.starLevel,d.managerLevel from wg_client as c left join wg_user as u on(c.rid=u.clientId) left join wg_department as d on(u.departmentId=d.rid) where c.openid=? and c.domainId=? order by d.starLevel desc";
         excute(sql,[openid,domainId], function (err, rows) {
@@ -46,7 +43,7 @@ ClientDao.prototype.retrieveClientInfo = function (openid,domainId,cb) {
 
 }
 
-ClientDao.prototype.retrieveClient = function (rid,cb) {
+exports.retrieveClient = function (rid,cb) {
     var sql="select * from wg_client where rid=?";
     excute(sql,rid, function (err, rows) {
         if(rows && rows.length>0){
@@ -57,14 +54,14 @@ ClientDao.prototype.retrieveClient = function (rid,cb) {
     });
 }
 
-ClientDao.prototype.updateClient = function (client,cb) {
+exports.updateClient = function (client,cb) {
     var sql="update wg_client set ? where rid=?";
     excute(sql,[client,client.rid], function (err, rows) {
         cb(err,rows);
     });
 }
 
-ClientDao.prototype.userBind = function (clientId,userInfo,domainId,cb) {
+exports.userBind = function (clientId,userInfo,domainId,cb) {
     var sql="select * from wg_user where mobile=? and domainId=?";
     excute(sql,[userInfo.username,domainId], function (err, rows) {
         if(rows && rows.length>0){
@@ -99,14 +96,14 @@ ClientDao.prototype.userBind = function (clientId,userInfo,domainId,cb) {
     });
 }
 
-ClientDao.prototype.addTraceLocation = function (traceLocation,cb) {
+exports.addTraceLocation = function (traceLocation,cb) {
     var sql="insert into wg_tracelocation set ?";
     excute(sql,[traceLocation], function (err, rows) {
         cb(err,rows);
     });
 }
 
-ClientDao.prototype.retrieveUserTraceList=function(clientId,creDate,cb){
+exports.retrieveUserTraceList=function(clientId,creDate,cb){
     var startTime=commUtil.fromStrToDate(creDate+" 00:00:00");
     var endTime= commUtil.fromStrToDate(creDate+" 23:59:59");
     var sql="SELECT rid,lng,lat,bLng,bLat,address,DATE_FORMAT(creDate,'%Y-%m-%d %H:%i')as creDate FROM wg_tracelocation WHERE clientId=? AND creDate>=? AND creDate<=? order by rid";
@@ -114,7 +111,6 @@ ClientDao.prototype.retrieveUserTraceList=function(clientId,creDate,cb){
         cb(err,rows);
     });
 }
-module.exports = ClientDao;
 
 
 

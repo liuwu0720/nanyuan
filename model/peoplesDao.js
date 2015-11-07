@@ -1,24 +1,20 @@
 var async = require("async");
 
-var PeoplesDao = function () {
-
-};
-
-PeoplesDao.prototype.retrieveList=function(type,arrayLength,cb){
+exports.retrieveList=function(type,arrayLength,cb){
     var sql="SELECT rid,name,politics,sex,photo,description,department,title FROM wg_people WHERE type=? ORDER BY listOrder LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
     excute(sql,[type],function(err,rows){
         cb(err,rows);
     });
 }
 
-PeoplesDao.prototype.retrieveDetail=function(rid,cb){
+exports.retrieveDetail=function(rid,cb){
     var sql="SELECT content FROM wg_people WHERE rid=?";
     excute(sql,[rid],function(err,rows){
         cb(err,rows);
     });
 }
 
-PeoplesDao.prototype.queryByPage = function (type, domainId, currentPage, pageSize, cb) {
+exports.queryByPage = function (type, domainId, currentPage, pageSize, cb) {
     var sql = "select * from wg_people where type= ? and domainId = ? order by listOrder asc  limit ?,?";
     var count_sql = "select count(0) as count from wg_people where type = ? and domainId = ? ";
     var start = (currentPage - 1) * pageSize;
@@ -38,14 +34,14 @@ PeoplesDao.prototype.queryByPage = function (type, domainId, currentPage, pageSi
     });
 }
 
-PeoplesDao.prototype.queryById=function(rid,domainId,cb){
+exports.queryById=function(rid,domainId,cb){
     var sql="select * from wg_people  where rid = ? and domainId = ?";
     excute(sql,[rid,domainId],function(err,rows){
         cb(err,err ||((rows.length&&rows[0]) || null));
     });
 }
 
-PeoplesDao.prototype.save = function (obj, cb) {
+exports.save = function (obj, cb) {
     var add_sql = "insert into wg_people  set ? ";
     var update_sql = "update wg_people set ?  where  rid = ? and domainId = ? ";
     if (obj.rid) {
@@ -59,14 +55,13 @@ PeoplesDao.prototype.save = function (obj, cb) {
     }
 }
 
-PeoplesDao.prototype.delById = function (rid, domainId, cb) {
+exports.delById = function (rid, domainId, cb) {
     var sql = "delete from wg_people where rid = ? and domainId = ? ";
     excute(sql, [rid, domainId], function (err, result) {
         cb(err, result);
     });
 }
 
-module.exports = PeoplesDao;
 
 
 

@@ -1,10 +1,6 @@
 var async = require("async");
 
-var SettingDao = function () {
-
-};
-
-SettingDao.prototype.save = function (obj, cb) {
+exports.save = function (obj, cb) {
     var add_sql = "insert into wg_setting  set ? ";
     var update_sql = "update wg_setting set ?  where  rid = ? and domainId = ? ";
     if (obj.rid) {
@@ -18,14 +14,13 @@ SettingDao.prototype.save = function (obj, cb) {
     }
 }
 
-SettingDao.prototype.queryList = function (domainId, cb) {
+exports.queryList = function (domainId, cb) {
     var sql = "select * from wg_setting where  domainId = ?";
     excute(sql, [domainId], function (err, rows) {
         cb(err, rows);
     });
 }
 
-module.exports = SettingDao;
 
 
 

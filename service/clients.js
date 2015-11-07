@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ClientDao = require('../model/clientDao.js');
-var clientDao = new ClientDao();
+var clientDao = require('../model/clientDao.js');
 
 router.post("/update", function (req, res) {
     var client = req.param("client");

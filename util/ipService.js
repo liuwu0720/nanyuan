@@ -1,10 +1,7 @@
 var http = require('http');
 var https = require('https');
 var util = require('util');
-var querystring = require('querystring');
-var commUtil=require('./commUtil.js');
-var CommonDao=require('../model/commonDao.js');
-var commonDao=new CommonDao();
+var commonDao=require('../model/commonDao.js');
 var crypto = require('crypto');
 
 var ipServicekey='94b76eeda1b3270c73e5750acd5ac89b';

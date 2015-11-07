@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var UsersDao = require('../model/usersDao.js');
-var usersDao = new UsersDao();
+var usersDao = require('../model/usersDao.js');
 
 router.get("/retrieveList", function (req, res) {
     var domainId=req.session.passport.user.domainId;

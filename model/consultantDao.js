@@ -1,23 +1,20 @@
 var async = require("async");
-var ConsultantDao = function () {
 
-};
-
-ConsultantDao.prototype.retrieveList=function(type,arrayLength,cb){
+exports.retrieveList=function(type,arrayLength,cb){
     var sql="SELECT o.rid,o.domainId,o.type,o.clientId,o.questions,o.answer,o.status,DATE_FORMAT(o.creDate,'%Y-%m-%d %H:%i:%S')as creDate ,DATE_FORMAT(o.answerDate,'%Y-%m-%d %H:%i:%S')as answerDate,c.username,c.headimgurl FROM wg_consultant as o left join wg_client as c on(o.clientId=c.rid) WHERE o.type=? ORDER BY o.rid DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
     excute(sql,[type],function(err,rows){
         cb(err,rows);
     });
 }
 
-ConsultantDao.prototype.addConsultant=function(consultant,cb){
+exports.addConsultant=function(consultant,cb){
     var sql="insert into wg_consultant set ?";
     excute(sql,[consultant],function(err,rows){
         cb(err,rows);
     });
 }
 
-ConsultantDao.prototype.queryByPage=function(status,domainId,currentPage,pageSize,cb){
+exports.queryByPage=function(status,domainId,currentPage,pageSize,cb){
     var sql="select c.*,client.username from wg_consultant c inner join wg_client client on(client.rid = c.clientId) where c.domainId = ? and (c.status = ? or '0' = ?) order by c.rid desc  limit ?,?";
     var count_sql = "select count(0) as count from wg_consultant where domainId = ?  and (status = ? or '0' = ?)";
     var start = (currentPage-1)*pageSize;
@@ -37,20 +34,19 @@ ConsultantDao.prototype.queryByPage=function(status,domainId,currentPage,pageSiz
     });
 }
 
-ConsultantDao.prototype.delById=function(rid,domainId,cb){
+exports.delById=function(rid,domainId,cb){
     var sql="delete from wg_consultant where rid = ? and domainId = ? ";
     excute(sql,[rid,domainId],function(err,result){
         cb(err,result);
     });
 }
 
-ConsultantDao.prototype.update=function(obj,cb){
+exports.update=function(obj,cb){
     var sql="update wg_consultant set ? where rid = ? and domainId = ? ";
     excute(sql,[obj,obj.rid,obj.domainId],function(err,result){
         cb(err,result);
     });
 }
-module.exports = ConsultantDao;
 
 
 

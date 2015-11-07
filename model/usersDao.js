@@ -1,30 +1,27 @@
 var async = require("async");
-var UsersDao = function () {
 
-};
-
-UsersDao.prototype.retrieveList = function (domainId, rids, cb) {
+exports.retrieveList = function (domainId, rids, cb) {
     var sql = "SELECT u.rid,u.username,d.department,u.role,u.title,u.mobile,u.politics,u.photo FROM wg_user as u left join wg_department as d on(u.departmentId=d.rid) WHERE u.domainId=? and u.role<>'D' and u.departmentId in(" + rids + ") ORDER BY u.listOrder,u.rid";
     excute(sql, [domainId], function (err, rows) {
         cb(err, rows);
     });
 }
 
-UsersDao.prototype.retrieveDetail = function (rid, cb) {
+exports.retrieveDetail = function (rid, cb) {
     var sql = "SELECT content FROM wg_user WHERE rid=?";
     excute(sql, [rid], function (err, rows) {
         cb(err, rows);
     });
 }
 
-UsersDao.prototype.retrieveListByParentDepartment = function (domainId, departmentId, cb) {
+exports.retrieveListByParentDepartment = function (domainId, departmentId, cb) {
     var sql = "SELECT u.username,u.role,u.title,u.mobile,u.politics,d.department FROM wg_user AS u LEFT JOIN wg_department AS d ON(u.departmentId=d.rid) WHERE departmentId IN (SELECT rid FROM wg_department WHERE (parentId=? OR rid=?)) AND u.domainId=?";
     excute(sql, [departmentId, departmentId, domainId], function (err, rows) {
         cb(err, rows);
     });
 }
 
-UsersDao.prototype.retrieveDepartmentList = function (domainId, cb) {
+exports.retrieveDepartmentList = function (domainId, cb) {
     var sql = "SELECT * FROM wg_department WHERE domainId=? and starLevel<=2 order by parentId,rid";
     excute(sql, [domainId], function (err, rows) {
         cb(err, rows);
@@ -32,7 +29,7 @@ UsersDao.prototype.retrieveDepartmentList = function (domainId, cb) {
 }
 
 
-UsersDao.prototype.queryByPage = function (domainId, departmentId, username, currentPage, pageSize, cb) {
+exports.queryByPage = function (domainId, departmentId, username, currentPage, pageSize, cb) {
     var sql = "select u.rid, u.username,u.password,u.title,u.role,u.mobile,u.politics,u.photo,u.listOrder,department from wg_user u left join wg_department d on (d.rid = u.departmentId) where u.domainId = ? and (d.rid=?  or '0' = ?)  and username like ? order by u.listOrder asc  limit ?,?";
     var count_sql = "select count(0) as count from wg_user u left join wg_department d on (d.rid = u.departmentId) where  u.domainId = ? and (d.rid=? or '0' = ?)  and username like ?  ";
     var start = (currentPage - 1) * pageSize;
@@ -51,14 +48,14 @@ UsersDao.prototype.queryByPage = function (domainId, departmentId, username, cur
         cb(err, r);
     });
 };
-UsersDao.prototype.delById = function (rid, domainId, cb) {
+exports.delById = function (rid, domainId, cb) {
     var sql = "delete from wg_user where rid = ? and domainId = ? ";
     excute(sql, [rid, domainId], function (err, result) {
         cb(err, result);
     });
 }
 
-UsersDao.prototype.save = function (obj, cb) {
+exports.save = function (obj, cb) {
     var add_sql = "insert into wg_user  set ? ";
     var update_sql = "update wg_user set ?  where  rid = ? and domainId = ? ";
     if (obj.rid) {
@@ -72,14 +69,14 @@ UsersDao.prototype.save = function (obj, cb) {
     }
 }
 
-UsersDao.prototype.queryById = function (rid, domainId, cb) {
+exports.queryById = function (rid, domainId, cb) {
     var sql = "select * from wg_user  where rid = ? and domainId = ?";
     excute(sql, [rid, domainId], function (err, rows) {
         cb(err, err || ((rows.length && rows[0]) || null));
     });
 }
 
-UsersDao.prototype.changePassword = function (clientId, oldPassword, newPassword, cb) {
+exports.changePassword = function (clientId, oldPassword, newPassword, cb) {
     var sql = "select password from wg_user where clientId = ?";
     excute(sql, [clientId], function (err, rows) {
         if (rows.length >= 0) {
@@ -96,7 +93,7 @@ UsersDao.prototype.changePassword = function (clientId, oldPassword, newPassword
     });
 }
 
-UsersDao.prototype.clearBind = function (clientId, cb) {
+exports.clearBind = function (clientId, cb) {
     var sql = "update wg_client set status='R' where rid = ?";
     excute(sql, [clientId], function (err, rows) {
         if (!err) {
@@ -109,7 +106,6 @@ UsersDao.prototype.clearBind = function (clientId, cb) {
     });
 }
 
-module.exports = UsersDao;
 
 
 

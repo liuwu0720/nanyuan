@@ -3,9 +3,8 @@ var crypto = require('crypto');
 var needle = require('needle');
 var fs = require('fs');
 var async = require('async');
-var serverConfig=require('../conf/serverConfig.js');
+var cfg=require('../conf/server.js');
 var commUtil=require('./commUtil.js');
-var redis=require('../model/redisDB.js');
 var xml2js = require('xml2js');
 var later=require('later');
 var jsSHA = require('jssha');
@@ -13,10 +12,10 @@ var jsSHA = require('jssha');
 var LOAD_PERIOD=3600;
 var scheduledAccessTokenProcess=null;
 
-var APP_ID=serverConfig.appid;
-var APP_SECRET=serverConfig.appsecret;
+var APP_ID=cfg.appid;
+var APP_SECRET=cfg.appsecret;
 
-var WEIXIN_PAY_NOTIFY_URL="http://"+serverConfig.host+"/weixin/ordersConfirm";
+var WEIXIN_PAY_NOTIFY_URL="http://"+cfg.host+"/weixin/ordersConfirm";
 
 var weixinTokenUrl="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+APP_ID+"&secret="+APP_SECRET;
 var weixinHttpsServer="api.weixin.qq.com";
@@ -200,7 +199,7 @@ exports.createPaymentOrder=function(app_id,mch_id,mch_key,openid,trade_type,body
         body:body,
         out_trade_no:out_trade_no,
         total_fee:1,//parseInt(total_fee*100),
-        spbill_create_ip:serverConfig.ipAddress,
+        spbill_create_ip:cfg.ipAddress,
         notify_url:WEIXIN_PAY_NOTIFY_URL,
         trade_type:trade_type,
         openid:openid,
@@ -224,7 +223,7 @@ exports.createNativePaymentOrder=function(app_id,mch_id,mch_key,body ,out_trade_
 }
 
 exports.createSystemPaymentOrder=function(body ,out_trade_no,total_fee,cb){
-    this.createNativePaymentOrder(serverConfig.defaultApp.appId,serverConfig.defaultApp.mch_id,serverConfig.defaultApp.mch_key,body,out_trade_no,total_fee,out_trade_no,cb);
+    this.createNativePaymentOrder(cfg.defaultApp.appId,cfg.defaultApp.mch_id,cfg.defaultApp.mch_key,body,out_trade_no,total_fee,out_trade_no,cb);
 }
 
 exports.createTestPaymentOrder=function(app_id,mch_id,mch_key,body ,out_trade_no,total_fee,cb){
@@ -280,7 +279,7 @@ exports.createWeixinConfig=function(url,cb){
         var config={
             debug: false,
             //jsapi_ticket: ticket,
-            appId:serverConfig.appid,
+            appId:cfg.appid,
             timestamp:timestamp,
             nonceStr:nonceStr,
             signature:sign,
@@ -340,7 +339,7 @@ exports.createWeixinConfig=function(url,cb){
         sign=crypto.createHash('sha1').update(sign,"utf8").digest("hex");
         var config={
             debug: false,
-            appId:serverConfig.appid,
+            appId:cfg.appid,
             timestamp:timestamp,
             nonceStr:noncestr,
             signature:sign,
@@ -475,33 +474,33 @@ exports.refreshJsapiTicket=function(token,cb){
 }
 
 exports.getAccessToken = function (cb){
-    redis.get("access_token",function(err,value){
+    redis_cli.get("access_token",function(err,value){
         cb(value);
     });
 };
 
 exports.setAccessToken = function (token,cb){
-    redis.set("access_token",token,cb);
+    redis_cli.set("access_token",token,cb);
 }
 
 exports.getCardTicket = function (cb){
-    redis.get("card_ticket",function(err,value){
+    redis_cli.get("card_ticket",function(err,value){
         cb(value);
     });
 };
 
 exports.setCardTicket = function (ticket,cb){
-    redis.set("card_ticket",ticket,cb);
+    redis_cli.set("card_ticket",ticket,cb);
 }
 
 exports.getJsapiTicket = function (cb){
-    redis.get("jsapi_ticket",function(err,value){
+    redis_cli.get("jsapi_ticket",function(err,value){
         cb(value);
     });
 };
 
 exports.setJsapiTicket = function (ticket,cb){
-    redis.set("jsapi_ticket",ticket,cb);
+    redis_cli.set("jsapi_ticket",ticket,cb);
 }
 
 exports.clearAccessTokenProcess=function(){
@@ -624,7 +623,7 @@ exports.createFolder=function(path,cb){
 
 exports.convertImageUrl=function(url){
     if(url.indexOf("http://")<0){
-        url="http://"+serverConfig.host+url;
+        url="http://"+cfg.host+url;
     }
     return url;
 }

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var DocumentsDao = require('../model/documentsDao.js');
-var documentsDao = new DocumentsDao();
+var documentsDao = require('../model/documentsDao.js');
 
 router.get("/retrieveList", function (req, res) {
     var type = req.param("type");
