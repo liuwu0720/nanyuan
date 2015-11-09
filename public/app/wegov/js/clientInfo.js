@@ -77,6 +77,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
         vm.$initializeStatus='N';
 
         vm.currentTabPage=0;
+        vm.$initPageParameters={news:{type:1},documents:{type:1}};
         vm.setCurrentTabPage=function(page){
             vm.currentTabPage=page;
         }
@@ -158,6 +159,17 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
                     });
                 }
             });
+        }
+
+        vm.checkIsNewInfo=function(dateStr){
+            dateStr=dateStr+" 00:00:00";
+            var thisDate=fromStrToDate(dateStr);
+            var thisDay=(new Date().getTime()-thisDate.getTime())/1000/60/60/24;
+            if(thisDay<=3){
+                return true;
+            }else{
+                return false;
+            }
         }
 
         vm.init=function(){

@@ -1,7 +1,7 @@
 var newsModel=createModel('news',function(modelName){
     return avalon.define(modelName, function (vm) {
         vm.list=[];
-        vm.type=1;
+        vm.type=clientInfoModel.$initPageParameters.news.type;
         vm.banner="";
         vm.currentItem={title:'',newsImage:'',publishDate:null,publisher:'',content:""};
         vm.$allList=[];
