@@ -27,7 +27,7 @@ exports.registerClient = function (data,domainId,cb) {
 
 exports.retrieveClientInfo = function (openid,domainId,cb) {
     excute("select * from wg_domain where rid=?",[domainId], function (err, domains) {
-        var sql="select c.*,u.username as dusername,u.departmentId,u.role,u.politics,d.department,d.starLevel,d.managerLevel from wg_client as c left join wg_user as u on(c.rid=u.clientId) left join wg_department as d on(u.departmentId=d.rid) where c.openid=? and c.domainId=? order by d.starLevel desc";
+        var sql="select c.*,u.username as dusername,u.departmentId,u.role,u.politics,d.department from wg_client as c left join wg_user as u on(c.rid=u.clientId) left join wg_department as d on(u.departmentId=d.rid) where c.openid=? and c.domainId=? ";
         excute(sql,[openid,domainId], function (err, rows) {
             if(rows && rows.length>0){
                 cb(err,rows[0],domains[0]);

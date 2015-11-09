@@ -22,7 +22,7 @@ exports.retrieveListByParentDepartment = function (domainId, departmentId, cb) {
 }
 
 exports.retrieveDepartmentList = function (domainId, cb) {
-    var sql = "SELECT * FROM wg_department WHERE domainId=? and starLevel<=2 order by parentId,rid";
+    var sql = "SELECT * FROM wg_department WHERE domainId=? order by parentId,rid";
     excute(sql, [domainId], function (err, rows) {
         cb(err, rows);
     });

@@ -118,7 +118,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             vm.initTabEvent();
             var url=null;
             var needRegister=false;
-            if(vm.clientDetail.status =="R" || !vm.clientDetail.departmentId){
+            if(vm.clientDetail.status =="R"){
                 needRegister=true;
                 url=appManager.convertUrlWithWeixinAuth("/nanyuan/app/"+folder+"/"+page+".html?type=S&wechat_card_js=1&folder="+nextFolder+"&page="+nextPage+"&domain="+vm.domainInfo.domainId);
             }else if(vm.clientDetail.status =="T"){
