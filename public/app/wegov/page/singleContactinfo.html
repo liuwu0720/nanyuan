@@ -1,0 +1,12 @@
+<section class="ms-controller" ms-controller="singleContactinfo">
+    <article>
+        <ul class="ui-list ui-list-pure">
+            <li class="ui-border-t">
+                <p width="100%" align="center"><i class="iconfont-1" style="color:red;font-size:1.6em" ms-click="openMap()">&#xe60c;</i>{{currentItem.domainName}}</p>
+                <p width="100%" align="center">{{currentItem.address}}</p>
+                <p width="100%" align="center">咨询/投诉电话：<a ms-attr-href="'tel:'+currentItem.tel">{{currentItem.tel}}</a></p>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/singleContactinfo.js"></script>

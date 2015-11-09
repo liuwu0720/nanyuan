@@ -29,4 +29,17 @@ router.get("/retrieveAllList", function (req, res) {
     });
 });
 
+router.get("/retrieveDomainInfo", function (req, res) {
+    var domainId = req.param("domainId");
+    var result = {code: 0};
+    contactinfoDao.retrieveDomainInfo(domainId,function (err, rows) {
+        if(err){
+            result.code=1;
+        }else if(rows.length>0){
+            result.data=rows[0];
+        }
+        res.send(result);
+    });
+});
+
 module.exports = router;

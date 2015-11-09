@@ -14,6 +14,13 @@ exports.retrieveAllList = function (type, cb) {
     });
 }
 
+exports.retrieveDomainInfo = function (domainId, cb) {
+    var sql = "SELECT * FROM wg_domain WHERE rid=? ";
+    excute(sql, [domainId], function (err, rows) {
+        cb(err, rows);
+    });
+}
+
 exports.queryByPage = function (type, domainId, currentPage, pageSize, cb) {
     var sql = "select * from wg_contactinfo where type= ? and domainId = ? order by listOrder asc limit ?,?";
     var count_sql = "select count(0) as count from wg_contactinfo where type = ? and domainId = ? ";
@@ -35,7 +42,7 @@ exports.queryByPage = function (type, domainId, currentPage, pageSize, cb) {
 }
 
 /**
- * ²éÑ¯¹¤×÷ÈËÔ±
+ * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
  * @param types
  * @param domainId
  * @param currentPage
