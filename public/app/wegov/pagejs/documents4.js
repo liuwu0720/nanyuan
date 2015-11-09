@@ -1,7 +1,7 @@
 var documents4Model=createModel('documents4',function(modelName){
     return avalon.define(modelName, function (vm) {
         vm.list=[];
-        vm.type=4;
+        vm.type=clientInfoModel.$initPageParameters.documents.type;
         vm.banner="";
         vm.currentItem={title:'',description:'',publishDate:null,publisher:'',content:''};
         vm.$allList=[];

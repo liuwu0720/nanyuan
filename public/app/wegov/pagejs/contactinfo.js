@@ -1,7 +1,7 @@
 var contactinfoModel=createModel('contactinfo',function(modelName){
     return avalon.define(modelName, function (vm) {
         vm.list=[];
-        vm.type=1;
+        vm.type=clientInfoModel.$initPageParameters.contactinfo.type;
         vm.currentItem={department:'',contactMan:'',title:'',address:'',tel:'',lng:'',lat:''};
         vm.$allList=[];
 
