@@ -4,11 +4,8 @@
             <li class="ui-border-t" ms-repeat="list">
                 <div class="ui-list-info">
                     <h4>{{el.department}}</h4>
-                    <p>联系人：{{el.contactMan}}</p>
-                    <p>地址：{{el.address}}</p>
-                    <p>电话：<a ms-attr-href="'tel:'+el.tel">{{el.tel}}</a></p>
                 </div>
-                <i class="iconfont-1" style="color:red;font-size:1.6em" ms-click="openMap(el)">&#xe60c;</i>
+                <a ms-attr-href="'tel:'+el.tel"><i class="iconfont-1" style="font-size:1.6em">&#xe602;</i></a>
             </li>
         </ul>
     </article>
