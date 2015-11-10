@@ -1,0 +1,49 @@
+<section class="ms-controller" ms-controller="opinions">
+    <article id="frameMain">
+        <ul class="ui-list ui-list-text ui-list-link">
+            <li class="ui-border-t" ms-repeat="list" ms-click="openOpinionsItem(el)">
+                <h4>{{el.title}}</h4>
+                <div class="ui-txt-info">{{el.publishDate | date("yyyy-MM-dd") | dateFormat}}</div>
+            </li>
+        </ul>
+    </article>
+    <article id="frameOpinionsDetail" style="display:none">
+        <ul class="ui-list ui-list-pure">
+            <li>
+                <h4>{{currentItem.title}}</h4>
+                <p width="100%" align="right"><span>{{currentItem.rowCount}}个人发表意见</span></p>
+            </li>
+        </ul>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn ui-btn-primary" ms-click="openAddOpinion()">
+                发表意见
+            </button>
+        </div>
+        <ul class="ui-list">
+            <li class="ui-border-t" ms-repeat="opinionCollectionList">
+                <div class="ui-avatar">
+                    <span ms-css-background-image="'url('+el.headimgurl+')'"></span>
+                </div>
+                <div class="ui-list-info">
+                    <p style="font-size:0.8em">{{el.username}}</p>
+                    <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}} {{el.creDate | date("HH:mm")}}</p>
+                    <p>{{el.description}}</p>
+                    <p width="90%" align="right" ms-click="addFavorite(el)">{{el.favoriteCount}}<i class="ui-icon-like" ms-css-color="el.myFavoriteCount>0'red':''"></i></p>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article id="frameOpinionEdit" style="display:none">
+        <div class="ui-form ui-border-t" ms-css-display="currentEmergency.type?'block':'none'">
+            <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+                <textarea placeholder="请输入您的意见" ms-duplex="newDescription"></textarea>
+            </div>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg ui-btn-primary" ms-click="saveOpinionEdit()">
+                确认
+            </button>
+        </div>
+    </article>
+</section>
+<script src="pagejs/opinions.js"></script>

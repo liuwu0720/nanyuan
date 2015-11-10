@@ -66,9 +66,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             politics:null,
             departmentId:0,
             department:null,
-            role:null,
-            starLevel:0,
-            managerLevel:0
+            role:null
         };
         vm.currentAddress="";
         vm.screen="Main";
