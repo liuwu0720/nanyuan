@@ -18,6 +18,23 @@ router.get("/retrieveList", function (req, res) {
     });
 });
 
+router.get("/searchList", function (req, res) {
+    var type = req.param("type");
+    var searchKey = req.param("searchKey");
+    var arrayLength=req.param("arrayLength");
+    var domainId=req.session.passport.user.domainId;
+    var result = {code: 0};
+    documentsDao.searchList(type,arrayLength,domainId,searchKey,function (err, rows,banner) {
+        if(err){
+            result.code=1;
+        }else{
+            result.data=rows;
+            result.banner=banner;
+        }
+        res.send(result);
+    });
+});
+
 router.get("/retrieveDetail",function(req, res){
     var rid = req.param("rid");
     var result = {code: 0};

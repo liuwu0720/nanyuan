@@ -17,6 +17,27 @@ exports.retrieveList=function(type,arrayLength,domainId,cb){
     });
 }
 
+exports.searchList=function(type,arrayLength,domainId,searchKey,cb){
+    var likeStr="";
+    if(searchKey.length>0){
+        likeStr=" and title like '%"+searchKey+"%' ";
+    }
+    var sql="SELECT rid,title,date_format(publishDate,'%Y-%m-%d') as publishDate,publisher,description FROM wg_document WHERE type=? "+likeStr+" ORDER BY rid DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
+    excute(sql,[type],function(err,rows){
+        if(arrayLength>0){
+            cb(err,rows,"");
+        }else{
+            excute("select * from wg_setting where parameter=? and domainId=?",["documents"+type,domainId],function(err,thisRows){
+                var banner="";
+                if(thisRows && thisRows.length>0){
+                    banner=thisRows[0].values;
+                }
+                cb(err,rows,banner);
+            });
+        }
+    });
+}
+
 exports.retrieveDetail=function(rid,cb){
     var sql="SELECT content FROM wg_document WHERE rid=?";
     excute(sql,[rid],function(err,rows){
