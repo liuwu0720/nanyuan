@@ -28,7 +28,7 @@
                     <p style="font-size:0.8em">{{el.username}}</p>
                     <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}} {{el.creDate | date("HH:mm")}}</p>
                     <p>{{el.description}}</p>
-                    <p width="90%" align="right" ms-click="addFavorite(el)">{{el.favoriteCount}}<i class="ui-icon-like" ms-css-color="el.myFavoriteCount>0'red':''"></i></p>
+                    <p width="90%" align="right" ms-click="addFavorite(el)" ms-css-color="el.myFavoriteCount>0?'red':''">{{el.favoriteCount}}<i class="iconfont-1" style="font-size:1.6em;">&#xe630;</i></p>
                 </div>
             </li>
         </ul>

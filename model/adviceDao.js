@@ -7,6 +7,13 @@ exports.addAdvice = function (advice, cb) {
     });
 }
 
+exports.retrieveAdviceTypeList=function(type,cb){
+    var sql = "select * from wg_advicetype where type=?";
+    excute(sql, [type], function (err, rows) {
+        cb(err, rows);
+    });
+}
+
 exports.delById=function(rid,domainId,cb){
     var sql="delete from wg_advice where rid = ? and domainId = ? ";
     excute(sql,[rid,domainId],function(err,result){

@@ -15,4 +15,17 @@ router.get("/addAdvice", function (req, res) {
     });
 });
 
+router.get("/retrieveAdviceTypeList", function (req, res) {
+    var type = req.param("type");
+    var result = {code: 0};
+    adviceDao.retrieveAdviceTypeList(type,function (err, rows) {
+        if(err){
+            result.code=1;
+        }else{
+            result.data=rows;
+        }
+        res.send(result);
+    });
+});
+
 module.exports = router;

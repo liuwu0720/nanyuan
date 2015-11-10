@@ -1,8 +1,14 @@
 var adviceModel=createModel('advice',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.currentAdvice={contact:'',mobile:'',description:'',email:''};
+        vm.type=clientInfoModel.$initPageParameters.advice.type;
+        vm.adviceTypeList=[];
+        vm.currentAdvice={contact:'',mobile:'',description:'',email:'',adviceType:0};
 
         vm.addAdvice=function(){
+            if(vm.currentAdvice.adviceType<=0){
+                showConfirmDialog("","请输入类型");
+                return;
+            }
             if(vm.currentAdvice.contact.length<=0){
                 showConfirmDialog("","请输入联系人姓名");
                 return;
@@ -19,11 +25,11 @@ var adviceModel=createModel('advice',function(modelName){
             if(domainId){
                 domainId=1;
             }
-            var advice={domainId:domainId,contact:vm.currentAdvice.contact,mobile:vm.currentAdvice.mobile,description:vm.currentAdvice.description,email:vm.currentAdvice.email};
+            var advice={domainId:domainId,adviceType:vm.currentAdvice.adviceType,contact:vm.currentAdvice.contact,mobile:vm.currentAdvice.mobile,description:vm.currentAdvice.description,email:vm.currentAdvice.email};
             ajaxGet('/advice/addAdvice',{advice:advice},function(result){
                 if(result.code==0) {
-                    showSuccessTip("您的意见和建议已经保存，我们将认真研究");
-                    vm.init();
+                    showSuccessTip("您的投诉和建议已经保存，我们将认真研究");
+                    vm.clearData();
                 }else{
                     showWarnTip("保存信息错误，请联系管理员");
                 }
@@ -33,11 +39,26 @@ var adviceModel=createModel('advice',function(modelName){
         vm.onFocus=function(){
         }
 
-        vm.init=function(){
+        vm.initAdviceTypeList=function(){
+            ajaxGet('/advice/retrieveAdviceTypeList',{type:vm.type},function(result){
+                if(result.code==0) {
+                    for(var i=0;i<result.data.length;i++){
+                        vm.adviceTypeList.push(result.data[i]);
+                    }
+                }
+            });
+        }
+        vm.clearData=function(){
             vm.currentAdvice.contact='';
             vm.currentAdvice.mobile='';
             vm.currentAdvice.description='';
             vm.currentAdvice.email='';
+            vm.currentAdvice.adviceType=0;
+        }
+
+        vm.init=function(){
+            vm.clearData();
+            vm.initAdviceTypeList();
         }
     });
 });
