@@ -1,0 +1,32 @@
+<!--预约页面-->
+<section class="ui-container" ms-controller="booking">
+    <div class="ui-form ui-border-t">
+        <form action="#">
+            <div class="ui-form-item ui-form-item-r ui-border-b">
+                <div class="ui-select" style="margin-left: 0px">
+                    <select ms-duplex="bookingType">
+                        <option selected>预约事务类别</option>
+                        <option>办理暂住证</option>
+                        <option>办理计划生育证明</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+                <textarea placeholder="情况说明" style="height:600px" ms-duplex="content"></textarea>
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="请输入联系人名称" ms-duplex="contacts">
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="请输入手机号码" ms-duplex="telephone">
+            </div>
+        </form>
+
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg ui-btn-primary" ms-click="saveBooking">
+                预约
+            </button>
+        </div>
+    </div>
+</section>
+<script src="pagejs/booking.js"></script>
