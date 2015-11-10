@@ -1,8 +1,8 @@
 module.exports = {
     app_name:"nanyuan",
     port: 3102,
-    ipAddress: "192.168.1.24",
-    host: "192.168.1.24:3102",
+    ipAddress: "127.0.0.1",
+    host: "127.0.0.1:3102",
     appid: "",
     appsecret: "",
     token: "",
@@ -12,7 +12,7 @@ module.exports = {
         host: "localhost",
         port: "3306",
         user: "root",
-        password: "",
+        password: "123456",
         database: "nanyuan",
         connectionLimit: 50
     },
