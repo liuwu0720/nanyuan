@@ -52,6 +52,13 @@ app.use(/^\/nanyuan(\/backend|\/editor).*/, session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {
+    //**********测试 START*********//
+    if(!req.user) {
+        req.login({rid:60,domainId:1},function(){
+
+        });
+    }
+    //**********测试 END*********//
     if (req.user || !(/^\/nanyuan(\/backend)+.*(index.html)$/.test(req.url))) {
         return  next();
     } else {
