@@ -1,7 +1,11 @@
 var async = require("async");
 
-exports.getList=function(domainId,userId,arrayLength,cb){
-    var sql="SELECT b.bookingNo,LEFT(b.createOn,10) AS createOn,b.content,b.status FROM ny_booking b WHERE b.createBy = ? and b.domainId = ? ORDER BY b.createOn DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
+exports.getList=function(domainId,userId,arrayLength,searchKey,cb){
+    var likeStr="";
+    if(searchKey.length>0){
+        likeStr=" and b.bookingNo like '%"+searchKey+"%' ";
+    }
+    var sql="SELECT b.bookingNo,LEFT(b.createOn,10) AS createOn,b.content,b.status FROM ny_booking b WHERE b.createBy = ? and b.domainId = ? "+likeStr+" ORDER BY b.createOn DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
     excute(sql,[userId,domainId],function(err,rows){
         cb(err,rows);
     });

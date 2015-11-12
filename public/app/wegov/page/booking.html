@@ -4,21 +4,40 @@
         <form action="#">
             <div class="ui-form-item ui-form-item-r ui-border-b">
                 <div class="ui-select" style="margin-left: 0px">
-                    <select ms-duplex="typeId">
+                    <select ms-duplex="typeId" ms-click="typeErrHide()">
                         <option selected value="0">预约事务类别</option>
                         <option ms-repeat="typeList" ms-value="el.id">{{el.typeName}}</option>
                     </select>
-
+                </div>
+            </div>
+            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{typeErr==0?'none':'block'}}">
+                <div class="ui-tooltips-cnt ui-border-b">
+                    <i></i>请选择预约事务类别
                 </div>
             </div>
             <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
-                <textarea placeholder="情况说明" style="height:600px" ms-duplex="content"></textarea>
+                <textarea placeholder="情况说明" style="height:600px" ms-duplex="content" ms-focus="contentErrHide()"></textarea>
+            </div>
+            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{contentErr==0?'none':'block'}}">
+                <div class="ui-tooltips-cnt ui-border-b">
+                    <i></i>请输入情况说明
+                </div>
             </div>
             <div class="ui-form-item ui-form-item-pure ui-border-b">
-                <input type="text" placeholder="请输入联系人名称" ms-duplex="contacts">
+                <input type="text" placeholder="请输入联系人名称" ms-duplex="contacts" ms-focus="contactsErrHide()">
+            </div>
+            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{contactsErr==0?'none':'block'}}">
+                <div class="ui-tooltips-cnt ui-border-b">
+                    <i></i>请输入联系人名称
+                </div>
             </div>
             <div class="ui-form-item ui-form-item-pure ui-border-b">
-                <input type="text" placeholder="请输入手机号码" ms-duplex="telephone">
+                <input type="text" placeholder="请输入手机号码" ms-duplex="telephone" ms-focus="telephoneErrHide()">
+            </div>
+            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{telephoneErr==0?'none':'block'}}">
+                <div class="ui-tooltips-cnt ui-border-b">
+                    <i></i>请输入手机号码
+                </div>
             </div>
         </form>
 
@@ -27,6 +46,10 @@
                 预约
             </button>
         </div>
+    </div>
+
+    <div class="ui-tips ui-tips-success" ms-css-display="{{saveSuccess==0?'none':'block'}}">
+        <i></i><span>预约成功</span>
     </div>
 </section>
 <script src="pagejs/booking.js"></script>

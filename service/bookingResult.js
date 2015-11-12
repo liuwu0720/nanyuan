@@ -10,8 +10,9 @@ router.get("/getList", function (req, res) {
     var domainId = req.param("domainId");
     var userId = req.param("userId");
     var arrayLength=req.param("arrayLength");
+    var searchKey = req.param("searchKey");
     var result = {code: 0};
-    bookingResultDao.getList(domainId,userId,arrayLength,function (err, rows) {
+    bookingResultDao.getList(domainId,userId,arrayLength,searchKey,function (err, rows) {
         if(err){
             result.code=1;
         }else{

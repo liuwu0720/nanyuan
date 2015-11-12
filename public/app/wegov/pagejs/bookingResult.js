@@ -1,11 +1,28 @@
-var consultantModel=createModel('bookingResult',function(modelName){
+var bookingResultModel=createModel('bookingResult',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.domainId=1;
+        vm.domainId=0;
         vm.userId=0;
         vm.bookingList=[];
+        vm.searchKey="";
+
+        vm.openSearchPan=function(){
+            $('.ui-searchbar-wrap').addClass('focus');
+            $('.ui-searchbar-input input').focus();
+        }
+
+        vm.startSearch=function(){
+            vm.searchList(function(){
+                $('.ui-searchbar-wrap').removeClass('focus');
+            });
+        }
+
+        vm.searchList=function(){
+            vm.bookingList.clear();
+            vm.getBooking();
+        }
 
         vm.getBooking=function(){
-            ajaxGet('/bookingResult/getList',{domainId:vm.domainId,userId:vm.userId,arrayLength:0},function(result){
+            ajaxGet('/bookingResult/getList',{domainId:vm.domainId,userId:vm.userId,arrayLength:0,searchKey:vm.searchKey},function(result){
                 if(result.code==0) {
                     if (result.data.length > 0) {
                         for (var i = 0; i < result.data.length; i++) {
@@ -16,18 +33,8 @@ var consultantModel=createModel('bookingResult',function(modelName){
             });
         }
 
-        vm.saveBooking=function(){
-            var domainId=clientInfoModel.domainInfo.domainId;
-            if(domainId){
-                domainId=1;
-            }
-            var bookinfo = {typeId:vm.typeId,content:vm.content,contacts:vm.contacts,telephone:vm.telephone,status:"booked",createBy:clientInfoModel.clientDetail.rid,domainId:domainId};
-            ajaxGet('/booking/addBooking',{bookinfo:bookinfo},function(result){
-                if(result.code==0) {
-                    alert("预约成功");
-                    window.location.reload()//刷新当前页面
-                }
-            });
+        vm.clearSearchKey=function(){
+            vm.searchKey="";
         }
 
         vm.init=function(){
