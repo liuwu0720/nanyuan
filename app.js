@@ -73,7 +73,7 @@ app.use("/"+cfg.app_name+'/backend/login', function (req, res, next) {
 app.use("/"+cfg.app_name+'/wechat', wechat);
 [ 'upload', 'lbs', 'common', 'clients', 'news',
     'documents','singlePage', 'peoples', 'users', 'contactinfo', 'advice',
-    'menu', 'consultant','emergency','opinions', 'weixin'].forEach(function (module) {
+    'menu', 'consultant','emergency','opinions', 'weixin', 'booking', 'bookingResult'].forEach(function (module) {
         app.use("/"+cfg.app_name+'/app/' + module, require('./service/' + module));
     }
 );

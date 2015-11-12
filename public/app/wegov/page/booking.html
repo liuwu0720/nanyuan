@@ -4,11 +4,11 @@
         <form action="#">
             <div class="ui-form-item ui-form-item-r ui-border-b">
                 <div class="ui-select" style="margin-left: 0px">
-                    <select ms-duplex="bookingType">
-                        <option selected>预约事务类别</option>
-                        <option>办理暂住证</option>
-                        <option>办理计划生育证明</option>
+                    <select ms-duplex="typeId">
+                        <option selected value="0">预约事务类别</option>
+                        <option ms-repeat="typeList" ms-value="el.id">{{el.typeName}}</option>
                     </select>
+
                 </div>
             </div>
             <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
