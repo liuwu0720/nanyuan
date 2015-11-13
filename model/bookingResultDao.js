@@ -5,21 +5,21 @@ exports.getList=function(domainId,userId,arrayLength,searchKey,cb){
     if(searchKey.length>0){
         likeStr=" and b.bookingNo like '%"+searchKey+"%' ";
     }
-    var sql="SELECT b.bookingNo,LEFT(b.createOn,10) AS createOn,b.content,b.status FROM ny_booking b WHERE b.createBy = ? and b.domainId = ? "+likeStr+" ORDER BY b.createOn DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
+    var sql="SELECT b.bookingNo,LEFT(b.createOn,10) AS createOn,b.content,b.status FROM wg_booking b WHERE b.createBy = ? and b.domainId = ? "+likeStr+" ORDER BY b.createOn DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
     excute(sql,[userId,domainId],function(err,rows){
         cb(err,rows);
     });
 }
 
 exports.addBooking=function(bookinfo,cb){
-    var sql="insert into ny_booking set ?";
+    var sql="insert into wg_booking set ?";
     excute(sql,[bookinfo],function(err,rows){
         cb(err,rows);
     });
 }
 
 exports.getMaxBookingNo=function(cb){
-    var sql="SELECT MAX(bookingNo) as bookingNo FROM ny_booking";
+    var sql="SELECT MAX(bookingNo) as bookingNo FROM wg_booking";
     excute(sql,function(err,rows){
         cb(err,rows);
     });
