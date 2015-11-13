@@ -4,7 +4,7 @@
         <div class="ui-searchbar ui-border-radius" ms-click="openSearchPan()">
             <i class="ui-icon-search"></i>
             <div class="ui-searchbar-text">{{searchKey || '请输入预约编号'}}</div>
-            <div class="ui-searchbar-input"><input value="" placeholder="请输入预约编号" autocapitalize="off" ms-duplex="searchKey"></div>
+            <div class="ui-searchbar-input"><input type="tel" value="" placeholder="请输入预约编号" autocapitalize="off" ms-duplex="searchKey"></div>
             <i class="ui-icon-close" ms-click="clearSearchKey()"></i>
         </div>
         <button class="ui-btn-s" ms-click="startSearch()">查询</button>
