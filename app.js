@@ -58,8 +58,8 @@ app.use(function (req, res, next) {
         res.redirect("/"+cfg.app_name+"/backend/login.html");
     }
 });
-app.use("/"+cfg.app_name,express.static(path.join(__dirname, 'public')));
-app.use("/"+cfg.app_name,express.static(path.join(__dirname, 'pictures')));
+app.use("/"+cfg.app_name+"/static",express.static(path.join(__dirname, 'public')));
+app.use("/"+cfg.app_name+"/static",express.static(path.join(__dirname, 'pictures')));
 app.use("/"+cfg.app_name+'/backend/login', function (req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (err) return res.status(500).send('server error');
