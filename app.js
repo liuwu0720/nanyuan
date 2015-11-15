@@ -17,7 +17,7 @@ var express = require('express');
 var app = express();
 
 app.disable("x-powered-by");
-app.use(log4js.connectLogger(logger, {level: log4js.levels.DEBUG, format: ':method :url'}));
+app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO, format: ':method :url'}));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
