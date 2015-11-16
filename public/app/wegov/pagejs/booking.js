@@ -54,9 +54,23 @@ var bookingModel=createModel('booking',function(modelName){
             });
         }
 
-        vm.init=function(){
-            vm.initTypeList();
+        vm.initApp=function(){
+            if(!clientInfoModel.gotoAccessRightScreen("wegov","register","wegov","3.2yuyuebanshi")){
+                vm.initTypeList();
+            }
         }
+
+        vm.init=function(){
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
+        }
+
 
         vm.typeErrHide=function(){
             vm.typeErr=0;
