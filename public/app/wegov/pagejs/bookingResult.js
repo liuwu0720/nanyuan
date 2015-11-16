@@ -1,7 +1,7 @@
 var bookingResultModel=createModel('bookingResult',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.domainId=0;
-        vm.userId=0;
+        vm.clientId=clientInfoModel.clientDetail.rid;
+        vm.domainId=clientInfoModel.domainInfo.domainId;
         vm.bookingList=[];
         vm.searchKey="";
 
@@ -22,7 +22,7 @@ var bookingResultModel=createModel('bookingResult',function(modelName){
         }
 
         vm.getBooking=function(){
-            ajaxGet('/bookingResult/getList',{domainId:vm.domainId,userId:vm.userId,arrayLength:0,searchKey:vm.searchKey},function(result){
+            ajaxGet('/bookingResult/getList',{domainId:vm.domainId,clientId:vm.clientId,arrayLength:0,searchKey:vm.searchKey},function(result){
                 if(result.code==0) {
                     if (result.data.length > 0) {
                         for (var i = 0; i < result.data.length; i++) {

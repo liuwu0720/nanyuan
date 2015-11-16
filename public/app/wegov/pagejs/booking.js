@@ -1,7 +1,7 @@
 var bookingModel=createModel('booking',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.domainId=0;
-        vm.userId=0;
+        vm.clientId=clientInfoModel.clientDetail.rid;
+        vm.domainId=clientInfoModel.domainInfo.domainId;
         vm.typeId=0;
         vm.content="";
         vm.contacts="";
@@ -42,13 +42,14 @@ var bookingModel=createModel('booking',function(modelName){
                 vm.telephoneErr=1;
                 return;
             }
-            var bookinfo = {typeId:vm.typeId,content:vm.content,contacts:vm.contacts,telephone:vm.telephone,status:"booked",createBy:vm.userId,domainId:vm.domainId};
+            var bookinfo = {typeId:vm.typeId,content:vm.content,contacts:vm.contacts,telephone:vm.telephone,clientId:vm.clientId,domainId:vm.domainId};
             ajaxGet('/booking/addBooking',{bookinfo:bookinfo},function(result){
                 if(result.code==0) {
                     vm.saveSuccess=1;
-                    setTimeout(function(){
-                        window.location.reload()//刷新当前页面
-                    },1000);
+                    vm.typeId=0;
+                    vm.content="";
+                    vm.contacts="";
+                    vm.telephone="";
                 }
             });
         }
