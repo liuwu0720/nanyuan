@@ -1,7 +1,9 @@
 var bookingModel=createModel('booking',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.clientId=clientInfoModel.clientDetail.rid;
-        vm.domainId=clientInfoModel.domainInfo.domainId;
+       // vm.clientId=clientInfoModel.clientDetail.rid;
+       // vm.domainId=clientInfoModel.domainInfo.domainId;
+        vm.clientId=60;
+        vm.domainId=1;
         vm.typeId=0;
         vm.content="";
         vm.contacts="";

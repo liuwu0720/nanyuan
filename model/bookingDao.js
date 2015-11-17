@@ -8,9 +8,24 @@ exports.typeList=function(domainId,arrayLength,cb){
 }
 
 exports.addBooking=function(bookinfo,cb){
+    //save booking info
     var sql="insert into wg_booking set ?";
     excute(sql,[bookinfo],function(err,rows){
-        cb(err,rows);
+        if(rows.insertId){
+            var rid=rows.insertId;
+            var len=(rid+"").length;
+            var str='';
+            for(var j=0;j<(12-len-2);j++){
+                str+="0";
+            }
+            var bookingNo="NY"+str+rid;
+
+            //update bookingNo
+            sql="update wg_booking set bookingNo = ? where rid = ?";
+            excute(sql,[bookingNo,rid],function(err,rows){
+                cb(err,rows);
+            });
+        }
     });
 }
 

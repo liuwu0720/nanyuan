@@ -1,7 +1,9 @@
 var bookingResultModel=createModel('bookingResult',function(modelName){
     return avalon.define(modelName, function (vm) {
-        vm.clientId=clientInfoModel.clientDetail.rid;
-        vm.domainId=clientInfoModel.domainInfo.domainId;
+        //vm.clientId=clientInfoModel.clientDetail.rid;
+       // vm.domainId=clientInfoModel.domainInfo.domainId;
+        vm.clientId=60;
+        vm.domainId=1;
         vm.bookingList=[];
         vm.searchKey="";
 
@@ -37,8 +39,21 @@ var bookingResultModel=createModel('bookingResult',function(modelName){
             vm.searchKey="";
         }
 
+        vm.initApp=function(){
+            if(!clientInfoModel.gotoAccessRightScreen("wegov","register","wegov","3.3jieguochaxun")){
+                vm.getBooking();
+            }
+        }
+
         vm.init=function(){
-            vm.getBooking();
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
         }
     });
 });
