@@ -15,10 +15,14 @@
             <li class="ui-border-t" ms-repeat="bookingList">
                 <p class="ui-txt-default">预约编号：{{el.bookingNo}}</p>
                 <p class="ui-txt-default">情况说明：{{el.content}}</p>
-                <p style="font-size: 10px;" align="right">申请日期：{{el.creDate}}</p>
-                <div class="ui-tips ui-tips-success" style="padding-top: 10px;padding-bottom: 5px;color: #777;text-align: right">
+                <p style="font-size: 10px;" align="right">{{el.creDate}}</p>
+                <div ms-if="el.status == 'booked'" class="ui-tips ui-tips-success" style="padding-top: 10px;padding-bottom: 5px;color: #777;text-align: left">
                     <i></i>
-                    <span>{{el.status == 'booked'?"申请成功，请带资料到我处办理":"处理完成"}}</span>
+                    <span>{{el.resultInfo}}</span>
+                </div>
+                <div ms-if="el.status == 'handled'" class="ui-tips ui-tips-info" style="padding-top: 10px;padding-bottom: 5px;color: #777;text-align: left">
+                    <i></i>
+                    <span>{{el.resultInfo}}</span>
                 </div>
             </li>
         </ul>

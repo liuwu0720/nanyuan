@@ -9,9 +9,10 @@ exports.typeList=function(domainId,arrayLength,cb){
 
 exports.addBooking=function(bookinfo,cb){
     //save booking info
+    bookinfo.resultInfo="申请成功，请带资料到我处办理";
     var sql="insert into wg_booking set ?";
     excute(sql,[bookinfo],function(err,rows){
-        if(rows.insertId){
+        if((!err)&&rows.insertId){
             var rid=rows.insertId;
             var len=(rid+"").length;
             var str='';
