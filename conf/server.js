@@ -9,9 +9,9 @@ module.exports = {
     encodingAESKey: "",
     emergencyMessageTemplate: "",
     mysql: {
-        host: "localhost",
+        host: "120.24.48.114",
         port: "3306",
-        user: "root",
+        user: "becky",
         password: "",
         database: "nanyuan",
         connectionLimit: 50
