@@ -73,6 +73,9 @@ var bookingModel=createModel('booking',function(modelName){
             }
         }
 
+        vm.doBack=function(){
+            vm.saveSuccess=0;
+        }
 
         vm.typeErrHide=function(){
             vm.typeErr=0;

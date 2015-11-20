@@ -1,5 +1,5 @@
 <!--预约页面-->
-<section class="ui-container" ms-controller="booking">
+<section class="ui-container" ms-controller="booking" ms-css-display="{{saveSuccess==1?'none':'block'}}">
     <div class="ui-form ui-border-t">
         <form action="#">
             <div class="ui-form-item ui-form-item-r ui-border-b">
@@ -50,8 +50,15 @@
             </button>
         </div>
     </div>
-    <div class="ui-tips ui-tips-success" ms-css-display="{{saveSuccess==0?'none':'block'}}">
-        <i></i><span>预约成功，请到结果查询页查看预约结果</span>
+    <!--<div class="ui-tips ui-tips-success" ms-css-display="{{saveSuccess==0?'none':'block'}}">-->
+        <!--<i></i><span>预约成功，请到结果查询页查看预约结果</span>-->
+    <!--</div>-->
+</section>
+<section class="ui-notice" ms-controller="booking" ms-css-display="{{saveSuccess==0?'none':'block'}}">
+    <i></i>
+    <p>预约成功，请到结果查询页查看预约结果</p>
+    <div class="ui-notice-btn">
+        <button class="ui-btn-primary ui-btn-lg" ms-click="doBack()">返回</button>
     </div>
 </section>
 <script src="pagejs/booking.js"></script>
