@@ -1,4 +1,3 @@
-var GLOBAL_APP_NAME="nanyuan";
 var registerModel = avalon.define("register", function (vm) {
     vm.clientDetail={
         rid:0,

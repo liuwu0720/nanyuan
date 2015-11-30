@@ -164,12 +164,12 @@ function AppManager(){
     this.convertUrlWithWeixinAuthCommand=function(url,withUserInfo){
         var host=window.location.host;
         if(url.indexOf("http")<0){
-            url='http://'+host+"/"+GLOBAL_APP_NAME+"/app"+url;
+            url='http://'+host+"/app"+url;
         }
         if(withUserInfo){
-            url="http://"+host+"/"+GLOBAL_APP_NAME+"/app/weixin/access?type=userinfo&url="+encodeURIComponent(url);
+            url="http://"+host+"/app/weixin/access?type=userinfo&url="+encodeURIComponent(url);
         }else{
-            url="http://"+host+"/"+GLOBAL_APP_NAME+"/app/weixin/access?url="+encodeURIComponent(url);
+            url="http://"+host+"/app/weixin/access?url="+encodeURIComponent(url);
         }
         return url;
     }

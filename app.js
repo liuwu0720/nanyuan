@@ -23,8 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.query());
-app.use("/"+cfg.app_name+"/app", session({
-    secret: 'wegov_session',
+app.use("/app", session({
+    secret: cfg.app_name+'_session',
     cookie: { maxAge: 30 * 24 * 3600 * 1000},
     key: "backend.sid",
     saveUninitialized: true,
@@ -37,7 +37,7 @@ app.use("/"+cfg.app_name+"/app", session({
     })
 }));
 app.use(/^\/nanyuan(\/backend|\/editor).*/, session({
-    secret: 'wegov_session',
+    secret: cfg.app_name+'_session',
     cookie: { maxAge: 30*60 * 1000},
     key: "backend.sid",
     saveUninitialized: true,
@@ -55,12 +55,12 @@ app.use(function (req, res, next) {
     if (req.user || !(/^\/nanyuan(\/backend)+.*(index.html)$/.test(req.url))) {
         return  next();
     } else {
-        res.redirect("/"+cfg.app_name+"/backend/login.html");
+        res.redirect("/backend/login.html");
     }
 });
-app.use("/"+cfg.app_name,express.static(path.join(__dirname, 'public')));
-app.use("/"+cfg.app_name,express.static(path.join(__dirname, 'pictures')));
-app.use("/"+cfg.app_name+'/backend/login', function (req, res, next) {
+app.use("/",express.static(path.join(__dirname, 'public')));
+app.use("/",express.static(path.join(__dirname, 'pictures')));
+app.use('/backend/login', function (req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (err) return res.status(500).send('server error');
         if (!user) return res.send({code: 1, message: "login fail"});        // 账号或密码错误
@@ -70,18 +70,18 @@ app.use("/"+cfg.app_name+'/backend/login', function (req, res, next) {
         });
     })(req, res, next);
 });
-app.use("/"+cfg.app_name+'/wechat', wechat);
+app.use('/wechat', wechat);
 [ 'upload', 'lbs', 'common', 'clients', 'news',
     'documents','singlePage', 'peoples', 'users', 'contactinfo', 'advice',
     'menu', 'consultant','emergency','opinions', 'weixin','question','booking','bookingResult'].forEach(function (module) {
-        app.use("/"+cfg.app_name+'/app/' + module, require('./service/' + module));
+        app.use('/app/' + module, require('./service/' + module));
     }
 );
 app.use("*", ensureAuthenticated, function (req, res, next) {
     next();
 });
 [ 'admin', 'editor','upload'].forEach(function (module) {
-        app.use("/"+cfg.app_name+'/backend/' + module, require('./service/' + module));
+        app.use('/backend/' + module, require('./service/' + module));
     }
 );
 app.use(function (req, res, next) {
@@ -118,7 +118,7 @@ function ensureAuthenticated(req, res, next) {
             res.status(401).send("没有访问授权!");
         } else {
             if (/.*(\.html|\.htm)$/.test(req.baseUrl)) {
-                res.redirect("/"+cfg.app_name+"/backend/login.html");
+                res.redirect("/backend/login.html");
             } else {
                 res.status(404).send("not founded" + req.baseUrl);
             }

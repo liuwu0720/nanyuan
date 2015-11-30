@@ -1,4 +1,3 @@
-var GLOBAL_APP_NAME="nanyuan";
 var accessRightModel = avalon.define("accessRight", function (vm) {
     vm.clientDetail={
         rid:0,

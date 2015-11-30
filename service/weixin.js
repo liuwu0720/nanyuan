@@ -22,7 +22,7 @@ router.get('/access', function (req, res) {
         page="index";
     }
     if(!url){
-        url="http://"+cfg.host+"/"+folder+"/app/"+folder+"/"+page+".html?domain="+domainId;
+        url="http://"+cfg.host+"/app/"+folder+"/"+page+".html?domain="+domainId;
     }
     if (type) {
         if (type == "userinfo") {

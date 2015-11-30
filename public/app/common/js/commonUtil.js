@@ -29,7 +29,7 @@ function gArrayCopy(arrObj, from) {
 
 function ajaxGetBackend(url, data, cb) {
     $.ajax({
-        url: "/nanyuan/app"+url,
+        url: "/app"+url,
         type: 'GET',
         data: data,
         dataType: "json",
@@ -43,7 +43,7 @@ function ajaxGetBackend(url, data, cb) {
 
 function ajaxPostBackend(url, data, cb) {
     $.ajax({
-        url:"/nanyuan/app"+url,
+        url:"/app"+url,
         type: 'POST',
         data: data,
         dataType: "json",
@@ -65,7 +65,7 @@ function ajaxGet(url, data, cb) {
     }catch(e){
     }
     $.ajax({
-        url: "/nanyuan/app"+url,
+        url: "/app"+url,
         type: 'GET',
         data: data,
         dataType: "json",
@@ -95,7 +95,7 @@ function ajaxPost(url, data, cb) {
     }catch(e){
     }
     $.ajax({
-        url:"/nanyuan/app"+url,
+        url:"/app"+url,
         type: 'POST',
         data: data,
         dataType: "json",
