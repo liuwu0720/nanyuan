@@ -9,7 +9,7 @@ exports.typeList=function(domainId,arrayLength,cb){
 
 exports.addBooking=function(bookinfo,cb){
     //save booking info
-    bookinfo.resultInfo="申请成功，请带资料到我处办理";
+    bookinfo.resultInfo="您的预约已经受理，请随时查询预约结果";
     var sql="insert into wg_booking set ?";
     excute(sql,[bookinfo],function(err,rows){
         if((!err)&&rows.insertId){

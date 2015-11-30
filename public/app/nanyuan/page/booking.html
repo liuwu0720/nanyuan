@@ -1,5 +1,5 @@
 <!--预约页面-->
-<section class="ui-container" ms-controller="booking" ms-css-display="{{saveSuccess==1?'none':'block'}}">
+<section class="ui-container ms-controller" ms-controller="booking" ms-if="saveSuccess==0">
     <div class="ui-form ui-border-t">
         <form action="#">
             <div class="ui-form-item ui-form-item-r ui-border-b">
@@ -10,37 +10,17 @@
                     </select>
                 </div>
             </div>
-            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{typeErr==0?'none':'block'}}">
-                <div class="ui-tooltips-cnt ui-border-b">
-                    <i></i>请选择预约事务类别
-                </div>
-            </div>
             <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
                 <textarea placeholder="情况说明" style="height:600px" ms-duplex="content" ms-focus="contentErrHide()"></textarea>
             </div>
-            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{contentErr==0?'none':'block'}}">
-                <div class="ui-tooltips-cnt ui-border-b">
-                    <i></i>请输入情况说明
-                </div>
-            </div>
             <div class="ui-form-item ui-form-item-pure ui-border-b">
                 <input type="text" placeholder="请输入联系人名称" ms-duplex="contacts" ms-focus="contactsErrHide()">
-            </div>
-            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{contactsErr==0?'none':'block'}}">
-                <div class="ui-tooltips-cnt ui-border-b">
-                    <i></i>请输入联系人名称
-                </div>
             </div>
             <div class="ui-form-item ui-form-item-l ui-border-b">
                 <label class="ui-border-r">
                     中国 +86
                 </label>
                 <input type="tel" maxlength="11" placeholder="请输入手机号码" ms-duplex="telephone" ms-focus="telephoneErrHide()">
-            </div>
-            <div class="ui-tooltips ui-tooltips-warn"  ms-css-display="{{telephoneErr==0?'none':'block'}}">
-                <div class="ui-tooltips-cnt ui-border-b">
-                    <i></i>请输入手机号码
-                </div>
             </div>
         </form>
 
@@ -51,7 +31,7 @@
         </div>
     </div>
 </section>
-<section class="ui-notice" ms-controller="booking" ms-css-display="{{saveSuccess==0?'none':'block'}}">
+<section class="ui-notice" ms-controller="booking" ms-if="saveSuccess==1">
     <i></i>
     <p>预约成功，请到结果查询页查看预约结果</p>
     <div class="ui-notice-btn">

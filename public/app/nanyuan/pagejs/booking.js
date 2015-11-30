@@ -30,18 +30,22 @@ var bookingModel=createModel('booking',function(modelName){
         vm.saveBooking=function(){
             if(vm.typeId==0){
                 vm.typeErr=1;
+                showConfirmDialog("","请输入预约事物类别");
                 return;
             }
             if(vm.content==''){
                 vm.contentErr=1;
+                showConfirmDialog("","请输入情况说明");
                 return;
             }
             if(vm.contacts==''){
                 vm.contactsErr=1;
+                showConfirmDialog("","请输入联系人名称");
                 return;
             }
             if(vm.telephone==''){
                 vm.telephoneErr=1;
+                showConfirmDialog("","请输入手机号码");
                 return;
             }
             var bookinfo = {typeId:vm.typeId,content:vm.content,contacts:vm.contacts,telephone:vm.telephone,clientId:vm.clientId,domainId:vm.domainId};

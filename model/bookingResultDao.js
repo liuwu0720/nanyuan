@@ -5,7 +5,7 @@ exports.getList=function(domainId,clientId,arrayLength,searchKey,cb){
     if(searchKey.length>0){
         likeStr=" and b.bookingNo like '%"+searchKey+"%' ";
     }
-    var sql="SELECT b.rid,b.bookingNo,LEFT(b.creDate,16) AS creDate,b.content,b.status,b.resultInfo FROM wg_booking b WHERE b.clientId = ? and b.domainId = ? "+likeStr+" ORDER BY b.creDate DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
+    var sql="SELECT b.rid,b.bookingNo,date_format(creDate,'%Y-%m-%d') as creDate,b.content,b.status,b.resultInfo FROM wg_booking b WHERE b.clientId = ? and b.domainId = ? "+likeStr+" ORDER BY b.creDate DESC LIMIT "+arrayLength+","+MAX_LIST_LENGTH;
     excute(sql,[clientId,domainId],function(err,rows){
         cb(err,rows);
     });
