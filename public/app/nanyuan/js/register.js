@@ -1,3 +1,4 @@
+var GLOBAL_APP_NAME="nanyuan";
 var registerModel = avalon.define("register", function (vm) {
     vm.clientDetail={
         rid:0,
@@ -44,7 +45,7 @@ var registerModel = avalon.define("register", function (vm) {
         var folder=getQueryString("folder");
         var page=getQueryString("page");
         var domainId=getQueryString("domain");
-        var url=appManager.convertUrlWithWeixinAuth("/app/"+folder+"/"+page+".html?domain="+domainId);
+        var url=appManager.convertUrlWithWeixinAuth("/"+folder+"/"+page+".html?domain="+domainId);
         window.location.href=url;
     }
 

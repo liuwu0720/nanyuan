@@ -1,3 +1,4 @@
+var GLOBAL_APP_NAME="nanyuan";
 var accessRightModel = avalon.define("accessRight", function (vm) {
     vm.clientDetail={
         rid:0,
@@ -24,10 +25,13 @@ var accessRightModel = avalon.define("accessRight", function (vm) {
     }
 
     vm.completeRegister=function(){
+        alert('AA');
         var folder=getQueryString("folder");
         var page=getQueryString("page");
         var domainId=getQueryString("domain");
-        var url=appManager.convertUrlWithWeixinAuth("/app/"+folder+"/"+page+".html?domain="+domainId);
+        alert('BB');
+        var url=appManager.convertUrlWithWeixinAuth("/"+folder+"/"+page+".html?domain="+domainId);
+        alert(url);
         window.location.href=url;
     }
 

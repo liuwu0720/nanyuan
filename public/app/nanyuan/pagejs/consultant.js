@@ -128,7 +128,7 @@ var consultantModel=createModel('consultant',function(modelName){
         }
 
         vm.initApp=function(){
-            if(!clientInfoModel.gotoAccessRightScreen("wegov","accessRight","wegov","1.4zixunfuwu")){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","accessRight","nanyuan","1.4zixunfuwu")){
                 vm.initList();
             }
         }

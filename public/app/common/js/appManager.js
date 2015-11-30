@@ -148,7 +148,7 @@ function AppManager(){
     this.convertUrlWithWeixinAuthUserInfo=function(url){
         return this.convertUrlWithWeixinAuthCommand(url,true);
     }
-
+    /*
     this.convertUrlWithWeixinAuthCommand=function(url,withUserInfo){
         var host=window.location.host;
         if(url.indexOf("http")<0){
@@ -158,6 +158,18 @@ function AppManager(){
             url="http://"+host+"/app/weixin/access?type=userinfo&url="+encodeURIComponent(url);
         }else{
             url="http://"+host+"/app/weixin/access?url="+encodeURIComponent(url);
+        }
+        return url;
+    }   */
+    this.convertUrlWithWeixinAuthCommand=function(url,withUserInfo){
+        var host=window.location.host;
+        if(url.indexOf("http")<0){
+            url='http://'+host+"/"+GLOBAL_APP_NAME+"/app"+url;
+        }
+        if(withUserInfo){
+            url="http://"+host+"/"+GLOBAL_APP_NAME+"/app/weixin/access?type=userinfo&url="+encodeURIComponent(url);
+        }else{
+            url="http://"+host+"/"+GLOBAL_APP_NAME+"/app/weixin/access?url="+encodeURIComponent(url);
         }
         return url;
     }

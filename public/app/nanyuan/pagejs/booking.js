@@ -57,7 +57,7 @@ var bookingModel=createModel('booking',function(modelName){
         }
 
         vm.initApp=function(){
-            if(!clientInfoModel.gotoAccessRightScreen("wegov","register","wegov","3.2yuyuebanshi")){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","register","nanyuan","3.2yuyuebanshi")){
                 vm.initTypeList();
             }
         }

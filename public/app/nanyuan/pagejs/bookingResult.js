@@ -40,7 +40,7 @@ var bookingResultModel=createModel('bookingResult',function(modelName){
         }
 
         vm.initApp=function(){
-            if(!clientInfoModel.gotoAccessRightScreen("wegov","register","wegov","3.3jieguochaxun")){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","register","nanyuan","3.3jieguochaxun")){
                 vm.getBooking();
             }
         }

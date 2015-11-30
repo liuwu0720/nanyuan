@@ -1,3 +1,4 @@
+var GLOBAL_APP_NAME="nanyuan";
 $(function(){
     function init(){
         initData();

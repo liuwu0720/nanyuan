@@ -222,7 +222,7 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
         }
 
         vm.initApp=function(){
-            if(!clientInfoModel.gotoAccessRightScreen("wegov","register","wegov","2.1xinxikuaicai")){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","accessRight","nanyuan","2.3suishoupai")){
                 vm.initCategoryList();
             }
         }

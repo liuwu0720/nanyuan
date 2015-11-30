@@ -113,8 +113,21 @@ var opinionsModel=createModel('opinions',function(modelName){
         vm.onFocus=function(){
         }
 
+        vm.initApp=function(){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","accessRight","nanyuan","2.1minyizhengji")){
+                vm.initList();
+            }
+        }
+
         vm.init=function(){
-            vm.initList();
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
         }
     });
 });

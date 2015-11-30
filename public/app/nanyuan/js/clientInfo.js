@@ -96,7 +96,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
                 vm.$scrollRefreshHandler();
             }
         }
-
+        /*
         vm.gotoAccessRightScreen=function(folder,page,nextFolder,nextPage){
             vm.initTabEvent();
             var url=null;
@@ -129,6 +129,36 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
                 //shareManager.onWeixinReadyHandler=function(){
                     vm.traceLocationInfo();
                 //}
+                return needRegister;
+            }
+        } */
+        vm.gotoAccessRightScreen=function(folder,page,nextFolder,nextPage){
+            var url=null;
+            var needRegister=false;
+            if(vm.clientDetail.status =="T"){
+                needRegister=true;
+                url=appManager.convertUrlWithWeixinAuthUserInfo("/"+folder+"/"+page+".html?wechat_card_js=1&folder="+nextFolder+"&page="+nextPage+"&domain="+vm.domainInfo.domainId);
+            }
+            if(needRegister){
+                window.location.href=url;
+            }else{
+                return needRegister;
+            }
+        }
+
+        vm.gotoRegisterScreen=function(folder,page,nextFolder,nextPage){
+            var url=null;
+            var needRegister=false;
+            if(vm.clientDetail.status =="R"){
+                needRegister=true;
+                url=appManager.convertUrlWithWeixinAuth("/"+folder+"/"+page+".html?type=S&wechat_card_js=1&folder="+nextFolder+"&page="+nextPage+"&domain="+vm.domainInfo.domainId);
+            }else if(vm.clientDetail.status =="T"){
+                needRegister=true;
+                url=appManager.convertUrlWithWeixinAuthUserInfo("/"+folder+"/"+page+".html?wechat_card_js=1&folder="+nextFolder+"&page="+nextPage+"&domain="+vm.domainInfo.domainId);
+            }
+            if(needRegister){
+                window.location.href=url;
+            }else{
                 return needRegister;
             }
         }
