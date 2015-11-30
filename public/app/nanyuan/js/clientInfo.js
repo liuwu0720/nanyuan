@@ -142,6 +142,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             if(needRegister){
                 window.location.href=url;
             }else{
+                vm.traceLocationInfo();
                 return needRegister;
             }
         }
@@ -159,6 +160,7 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             if(needRegister){
                 window.location.href=url;
             }else{
+                vm.traceLocationInfo();
                 return needRegister;
             }
         }

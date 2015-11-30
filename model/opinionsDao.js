@@ -12,7 +12,7 @@ exports.retrieveDetail=function(rid,clientId,cb){
     "LEFT JOIN (SELECT opinionDetailId,COUNT(*) AS favoriteCount FROM wg_opinionfavorite GROUP BY opinionDetailId) AS f ON(d.rid=f.opinionDetailId) "+
     "LEFT JOIN (SELECT opinionDetailId,1 AS myFavoriteCount FROM wg_opinionfavorite WHERE clientId=?) AS m ON(d.rid=m.opinionDetailId) "+
     "LEFT JOIN wg_client AS c ON(d.clientId=c.rid) "+
-    "WHERE d.opinionId=? ";
+    "WHERE d.opinionId=? order by d.creDate desc";
     excute(sql,[clientId,rid],function(err,rows){
         cb(err,rows);
     });

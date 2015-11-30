@@ -53,7 +53,7 @@ var opinionsModel=createModel('opinions',function(modelName){
                     opinion.creDate=new Date();
                     opinion.username=clientInfoModel.clientDetail.username;
                     opinion.headimgurl=clientInfoModel.clientDetail.headimgurl;
-                    vm.opinionCollectionList.push(opinion);
+                    vm.opinionCollectionList.splice(0,0,opinion);
                     vm.currentItem.rowCount++;
                     window.history.go(-1);
                 }else{
