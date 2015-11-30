@@ -24,13 +24,10 @@ var accessRightModel = avalon.define("accessRight", function (vm) {
     }
 
     vm.completeRegister=function(){
-        alert('AA');
         var folder=getQueryString("folder");
         var page=getQueryString("page");
         var domainId=getQueryString("domain");
-        alert('BB');
         var url=appManager.convertUrlWithWeixinAuth("/"+folder+"/"+page+".html?domain="+domainId);
-        alert(url);
         window.location.href=url;
     }
 

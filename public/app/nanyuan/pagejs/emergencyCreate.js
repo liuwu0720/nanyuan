@@ -28,7 +28,6 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
             shareManager.getLocation(function(latitude,longitude) {
                 if (latitude == null || longitude == null) {
                     showConfirmDialog("", "无法取得当前位置");
-                    //return;
                 }
                 vm.currentEmergency.lat = latitude;
                 vm.currentEmergency.lng = longitude;
@@ -44,22 +43,22 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
                 showConfirmDialog("","请输入您对事件的描述");
                 return;
             }
-//            if(vm.currentEmergency.images.length<=0){
-//                showConfirmDialog("","请至少上传一张图片");
-//                return;
-//            }
-            //vm.currentEmergency.mainImage=vm.currentEmergency.images[0]
+            if(vm.currentEmergency.images.length<=0){
+                showConfirmDialog("","请至少上传一张图片");
+                return;
+            }
+            vm.currentEmergency.mainImage=vm.currentEmergency.images[0]
             if(vm.currentEmergency.rid==0){
                 var domainId=clientInfoModel.domainInfo.domainId;
                 if(!domainId){
                     domainId=1;
                 }
-                //shareManager.getLocation(function(latitude,longitude){
-//                    if(latitude==null||longitude==null){
-//                        showConfirmDialog("","无法取得当前位置");
-//                    }
-//                    vm.currentEmergency.lat=latitude;
-//                    vm.currentEmergency.lng=longitude;
+                shareManager.getLocation(function(latitude,longitude){
+                    if(latitude==null||longitude==null){
+                        showConfirmDialog("","无法取得当前位置");
+                    }
+                    vm.currentEmergency.lat=latitude;
+                    vm.currentEmergency.lng=longitude;
                     var emergency={domainId:domainId,clientId:clientInfoModel.clientDetail.rid,category:vm.currentEmergency.category,description:vm.currentEmergency.description,status:'T',type:(vm.currentEmergency.type?1:0),address:vm.currentEmergency.address,lat:vm.currentEmergency.lat,lng:vm.currentEmergency.lng,mainImage:vm.currentEmergency.mainImage,images:JSON.stringify(vm.currentEmergency.images),contactMan:vm.currentEmergency.contactMan,mobile:vm.currentEmergency.mobile};
                     ajaxGet('/emergency/addEmergency',{emergency:emergency,departmentId:clientInfoModel.clientDetail.departmentId},function(result){
                         if(result.code==0) {
@@ -69,13 +68,16 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
                             vm.currentEmergency.lat='';
                             vm.currentEmergency.lng='';
                             vm.currentEmergency.images.clear();
+                            vm.currentEmergency.contactMan='';
+                            vm.currentEmergency.mobile='';
+                            showConfirmDialog("","您反馈的随手拍信息已经成功上报");
                         }else if(result.code==10){
                             showConfirmDialog("","您今天已经上报过无重特大信息，不能重复上报");
                         }else{
                             showConfirmDialog("","保存信息错误，请联系管理员");
                         }
                     });
-                //});
+                });
             }else{
                 vm.currentEmergency.mainImage=vm.currentEmergency.images[0];
                 var emergency={rid:vm.currentEmergency.rid,description:vm.currentEmergency.description,address:vm.currentEmergency.address,mainImage:vm.currentEmergency.mainImage,images:JSON.stringify(vm.currentEmergency.images)};
@@ -87,7 +89,10 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
                         vm.currentEmergency.address='';
                         vm.currentEmergency.lat='';
                         vm.currentEmergency.lng='';
+                        vm.currentEmergency.contactMan='';
+                        vm.currentEmergency.mobile='';
                         vm.currentEmergency.images.clear();
+                        showConfirmDialog("","您反馈的随手拍信息已经修改成功");
                     }else{
                         showConfirmDialog("","保存信息错误，请联系管理员");
                     }
@@ -222,7 +227,7 @@ var emergencyCreateModel=createModel('emergencyCreate',function(modelName){
         }
 
         vm.initApp=function(){
-            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","accessRight","nanyuan","2.3suishoupai")){
+            if(!clientInfoModel.gotoAccessRightScreen("nanyuan","accessRight","nanyuan","2.1xinxikuaicai")){
                 vm.initCategoryList();
             }
         }
