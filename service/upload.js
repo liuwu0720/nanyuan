@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var util = require('util');
+var cfg = require('../conf/server');
 var formidable = require('formidable');
 var gm = require('gm');
 var commUtil = require('../util/commUtil');
@@ -147,9 +148,9 @@ function getNewUrl(url) {
             count = parseInt(url.substring((findex + 1), index));
             count++;
         }
-        var newUrl = url.substring(0, findex) + '_' + count + url.substring(index);
+         newUrl = url.substring(0, findex) + '_' + count + url.substring(index);
     } else {
-        var newUrl = url.substring(0, index) + '_' + url.substring(index);
+         newUrl = url.substring(0, index) + '_' + url.substring(index);
     }
     return newUrl;
 }
@@ -157,12 +158,14 @@ function getNewUrl(url) {
 router.post('/coverCutting', function (req, res, next) {
     var url = req.param("url");
     var newUrl = getNewUrl(url);
-    var url = 'public' + url;
+    url = "public"+url;
     var selectData = req.param("select");
     var gmFile = gm(url);
     gmFile.crop(selectData.w, selectData.h, selectData.x, selectData.y);
+
     gmFile.write(('public' + newUrl), function (err) {
         if (err) {
+            console.log(err);
             res.send({code: 1});
         }
         else {

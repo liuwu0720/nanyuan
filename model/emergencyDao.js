@@ -1,7 +1,5 @@
-var commUtil = require('../util/commUtil');
 var messageUtil = require('../util/messageUtil');
-var ipService = require('../util/ipService');
-var EventProxy = require('eventproxy');
+var async = require("async");
 
 var EmergencyDao = function () {
 
@@ -67,6 +65,41 @@ EmergencyDao.prototype.updateEmergencyReport=function(emergency,cb){
     delete emergency.rids;
     var sql="update wg_emergencyreport set ? WHERE rid in("+rids+")";
     excute(sql,[emergency],function(err,rows){
+        cb(err,rows);
+    });
+}
+
+EmergencyDao.prototype.queryByPage=function(domainId,currentPage,pageSize,cb){
+    var sql="select *  from wg_emergency where domainId = ? order by rid desc  limit ?,?";
+    var count_sql = "select count(0) as count from wg_emergency where domainId = ? ";
+    var start = (currentPage-1)*pageSize;
+    async.waterfall([function(next){
+        excute(count_sql,[domainId],function(err,rows){
+            next(err,err || rows[0].count);
+        });
+    },function(r,next){
+        if(r){
+            return excute(sql,[domainId,start,pageSize],function(err,rows){
+                next(err,{totalItems:r,list:rows});
+            });
+        }
+        next(null,{totalItems:0});
+    }],function(err,r){
+        cb(err,r);
+    });
+}
+
+EmergencyDao.prototype.queryById=function(rid,domainId,cb){
+    var sql="select * from wg_emergency where rid = ? and domainId = ?";
+    excute(sql,[rid,domainId],function(err,rows){
+        cb(err,err ||(rows.length&&rows[0]));
+    });
+}
+
+
+EmergencyDao.prototype.delById=function(rid,domainId,cb){
+    var sql="delete from wg_emergency where rid = ? and domainId = ?";
+    excute(sql,[rid,domainId],function(err,rows){
         cb(err,rows);
     });
 }

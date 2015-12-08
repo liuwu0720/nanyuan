@@ -7,10 +7,6 @@
     <link href="./css/lib/one.css" rel="stylesheet" type="text/css"/>
     <link href="./css/lib/iconfont/iconfont.css" rel="stylesheet" type="text/css"/>
     <link href="./css/login.css" rel="stylesheet" type="text/css"/>
-    <script charset="utf-8" src="./seajs/3.0.0/sea-debug.js"></script>
-    <script charset="utf-8" src="./seajs/3.0.0/seajs-wrap-debug.js"></script>
-    <style>
-    </style>
 </head>
 <body>
 <div class="header">
@@ -40,14 +36,17 @@
                         <div class="ui-box-content">
                             <div class="form-wrap">
                                 <h3 class="form-title sthupo">福&nbsp;田&nbsp;综&nbsp;管&nbsp;后&nbsp;台</h3>
-                                <form name="" class="form"  method="post" action="#" id="">
-                                     <p class="error"><i class="iconfont">&#xe619;</i>&nbsp;<span>用户名或密码错误</span></p>
+
+                                <form name="" class="form" method="post" action="#" id="">
+                                    <p class="error"><i class="iconfont">&#xe609;</i>&nbsp;<span>用户名或密码错误</span></p>
+
                                     <div class="form-group">
-                                        <label><i class="iconfont">&#xe615;</i>&nbsp;用户名</label>
-                                        <input type="text" id="username" name="username" placeholder="手机号/账号/邮箱" maxlength="100">
+                                        <label><i class="iconfont">&#xe608;</i>&nbsp;用户名</label>
+                                        <input type="text" id="username" name="username" placeholder="手机号/账号/邮箱"
+                                               maxlength="100">
                                     </div>
                                     <div class="form-group">
-                                        <label><i class="iconfont">&#xe616;</i>&nbsp;密&nbsp;&nbsp;&nbsp;码</label>
+                                        <label><i class="iconfont">&#xe601;</i>&nbsp;密&nbsp;&nbsp;&nbsp;码</label>
                                         <input type="password" id="password" name="password" maxlength="100">
                                     </div>
                                     <div class="form-group" style="width: 100%">
@@ -63,14 +62,49 @@
     </div>
 </div>
 <div class="footer">Copyright &copy; 2002-2015 感识科技 All Rights Reserved.</div>
+
+<!---------------------------测试环境 START----------------------------->
+<script charset="utf-8" src="js/lib/seajs/sea.js"></script>
+<script charset="utf-8" src="js/lib/seajs/seajs-wrap-debug.js"></script>
 <script type="text/javascript">
     seajs.config({
-        base: '/nanyuan/backend/seajs/3.0.0',
-        alias:{
-            api:"wegov/comm/api"
+        base: "./login/spm_modules",
+        alias: {
+            jquery: "jquery/2.1.4/jquery",
+            "arale-switchable": "arale-switchable/1.1.1/switchable",
+            "arale-base": "arale-base/1.2.0/base",
+            "arale-widget": "arale-widget/1.2.0/widget",
+            "arale-easing": "arale-easing/1.1.0/index",
+            "arale-class": "arale-class/1.2.0/class" ,
+            "arale-events": "arale-events/1.2.0/events"
+        }
+
+    });
+    seajs.use("./login/index");
+</script>
+<!---------------------------测试环境 END----------------------------->
+
+<!---------------------------生产环境1 spm-sea START----------------------------->
+<!--<script charset="utf-8" src="./js/lib/seajs/sea.js"></script>
+<script type="text/javascript">
+    seajs.config({
+        base: "./login/dist",
+        alias: {
+            jquery: "jquery/2.1.4/jquery",
+            "arale-switchable": "arale-switchable/1.1.1/switchable",
+            "arale-base": "arale-base/1.2.0/base",
+            "arale-widget": "arale-widget/1.2.0/widget",
+            "arale-easing": "arale-easing/1.1.0/index",
+            "arale-class": "arale-class/1.2.0/class" ,
+            "arale-events": "arale-events/1.2.0/events"
         }
     });
-    seajs.use("login");
-</script>
+    seajs.use("login/0.0.1/index-41abafbf");
+</script>-->
+<!---------------------------生产环境1  END----------------------------->
+
+<!--------------------------- 生产环境2 Standlone START ----------------------------->
+<!--<script charset="utf-8" src="./login/dist/login/0.0.1/index-b89e0f6a3e9438e4bfe4.js"></script>-->
+<!--------------------------- 生产环境2 END   ----------------------------->
 </body>
 </html>

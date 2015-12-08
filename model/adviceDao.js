@@ -23,7 +23,7 @@ exports.delById=function(rid,domainId,cb){
 
 
 exports.queryByPage = function (domainId, currentPage, pageSize, cb) {
-    var sql = "select * from wg_advice  where domainId = ? order by  rid desc  limit ?,?";
+    var sql = "select a.*,t.typeDesc from wg_advice a inner join wg_advicetype t on(t.adviceType = a.adviceType)  where domainId = ? order by  rid desc  limit ?,?";
     var count_sql = "select count(0) as count from wg_advice where domainId = ? ";
     var start = (currentPage - 1) * pageSize;
     async.waterfall([function (next) {

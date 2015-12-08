@@ -1,7 +1,7 @@
 var async = require("async");
 
 exports.retrieveList = function (domainId, rids, cb) {
-    var sql = "SELECT u.rid,u.username,d.department,u.role,u.title,u.mobile,u.politics,u.photo FROM wg_user as u left join wg_department as d on(u.departmentId=d.rid) WHERE u.domainId=? and u.role<>'D' and u.departmentId in(" + rids + ") ORDER BY u.listOrder,u.rid";
+    var sql = "SELECT u.rid,u.username,d.department,u.role,u.title,u.mobile,u.politics FROM wg_user as u left join wg_department as d on(u.departmentId=d.rid) WHERE u.domainId=? and u.role<>'D' and u.departmentId in(" + rids + ") ORDER BY u.listOrder,u.rid";
     excute(sql, [domainId], function (err, rows) {
         cb(err, rows);
     });
@@ -30,7 +30,7 @@ exports.retrieveDepartmentList = function (domainId, cb) {
 
 
 exports.queryByPage = function (domainId, departmentId, username, currentPage, pageSize, cb) {
-    var sql = "select u.rid, u.username,u.password,u.title,u.role,u.mobile,u.politics,u.photo,u.listOrder,department from wg_user u left join wg_department d on (d.rid = u.departmentId) where u.domainId = ? and (d.rid=?  or '0' = ?)  and username like ? order by u.listOrder asc  limit ?,?";
+    var sql = "select u.rid, u.username,u.password,u.title,u.role,u.mobile,u.politics,u.listOrder,department from wg_user u left join wg_department d on (d.rid = u.departmentId) where u.domainId = ? and (d.rid=?  or '0' = ?)  and username like ? order by u.listOrder asc  limit ?,?";
     var count_sql = "select count(0) as count from wg_user u left join wg_department d on (d.rid = u.departmentId) where  u.domainId = ? and (d.rid=? or '0' = ?)  and username like ?  ";
     var start = (currentPage - 1) * pageSize;
     async.waterfall([function (next) {

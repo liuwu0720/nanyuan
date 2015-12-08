@@ -172,6 +172,17 @@ a:visited {
     border-bottom: 1px solid #e7e8eb;
 }
 
+.ui-switchable-trigger .disable{
+     background-color:silver;
+     color:white!important;
+     cursor: not-allowed;
+}
+.ui-switchable-panel li.disable > a{
+    background-color:silver;
+    color:white!important;
+    cursor: not-allowed;
+}
+
 .arrow {
     position: absolute;
     right: 0px;
@@ -224,13 +235,18 @@ a:visited {
 .ui-switchable-panel li a:hover {
     background: #f4f5f9;
 }
+.ui-switchable-panel li.disable a:hover{
+    background-color:silver;
+    color:white!important;
+    cursor: not-allowed;
+}
 
 .ui-switchable-panel li a > i {
     color: #e7e8eb;
     font-size: 2.5em;
     position: absolute;
     right: -15px;
-    top: 0px;
+    top: -3px;
     display: none;
 }
 
@@ -409,13 +425,13 @@ a:visited {
     margin-left: -130px;
 }
 
-#staff-page {
+#content-page {
     overflow: hidden;
 }
 
-#staff-page .staff-left, #staffEdit-page .staff-left {
+#content-page .content-left, #staffEdit-page .content-left {
     float: left;
-    background-color: whitesmoke;
+    background-color: white;
     padding: 20px 20px;
     width: 300px;
     margin: 0 auto;
@@ -425,7 +441,7 @@ a:visited {
     -moz-box-sizing: border-box;
 }
 
-#staff-page .staff-right, #staffEdit-page .staff-right {
+#content-page .content-right, #staffEdit-page .content-right {
     float: right;
     width: 600px;
 }
@@ -486,6 +502,38 @@ a:visited {
     height: 100%;
 }
 
-#settingCover-page .cover-item > div .uploader-btn {
+ /* =============== 结点树 Start ================= */
+#category-tree{
+    background:whitesmoke;
+}
+.category-menu .menu-title{
+    padding-left:60px;
+}
+.category-menu .menu-title a{
+    display: block;
+    padding-left: 32px;
+    line-height:60px;
+}
+
+.survey-list{
 
 }
+
+.survey-tool {
+    line-height:40px;
+    margin-bottom:20px;
+}
+.survey-group{
+    line-height:40px;
+    border-top: 1px solid silver;
+    font-weight:bold;
+    cursor:pointer;
+}
+.survey-group:hover{
+    background:silver;
+}
+.survey-active{
+    background: #44abff;
+    color:white;
+}
+/* ===============  结点树  End  ================= */

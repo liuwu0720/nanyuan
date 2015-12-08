@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.query());
 app.use("/app", session({
-    secret: cfg.app_name+'_session',
-    cookie: { maxAge: 30 * 24 * 3600 * 1000},
+    secret: cfg.app_name + '_session',
+    cookie: {maxAge: 30 * 24 * 3600 * 1000},
     key: "backend.sid",
     saveUninitialized: true,
     rolling: true,
@@ -36,10 +36,10 @@ app.use("/app", session({
         pass: cfg.redis.password
     })
 }));
-app.use(/^\/nanyuan(\/backend|\/editor).*/, session({
-    secret: cfg.app_name+'_session',
-    cookie: { maxAge: 30*60 * 1000},
-    key: "backend.sid",
+app.use(/^(\/backend|\/editor).*/, session({
+    secret: cfg.app_name + '_session',
+    cookie: {maxAge: 3 * 60 * 1000},
+    key: "ny.sid",
     saveUninitialized: true,
     rolling: true,
     store: new RedisStore({
@@ -51,39 +51,48 @@ app.use(/^\/nanyuan(\/backend|\/editor).*/, session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(function (req, res, next) {
-    if (req.user || !(/^\/nanyuan(\/backend)+.*(index.html)$/.test(req.url))) {
-        return  next();
-    } else {
-        res.redirect("/backend/login.html");
+/*app.use(function (req, res, next) {
+ if (req.user || !(/^\/nanyuan(\/backend)+.*(index.html)$/.test(req.url))) {
+ return  next();
+ } else {
+ res.redirect("/backend/login.html");
+ }
+ });*/
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/wechat', wechat);
+['upload', 'lbs', 'common', 'clients', 'news',
+    'documents', 'singlePage', 'peoples', 'users', 'contactinfo', 'advice',
+    'menu', 'consultant', 'emergency', 'opinions', 'weixin', 'question', 'booking', 'bookingResult'].forEach(function (module) {
+        app.use('/app/' + module, require('./service/' + module));
     }
-});
-app.use("/",express.static(path.join(__dirname, 'public')));
-app.use("/",express.static(path.join(__dirname, 'pictures')));
-app.use('/backend/login', function (req, res, next) {
+);
+
+app.use("/backend/login",function(req,res,next){
     passport.authenticate('local', function (err, user) {
         if (err) return res.status(500).send('server error');
         if (!user) return res.send({code: 1, message: "login fail"});        // 账号或密码错误
         req.logIn(user, function (err) {
             if (err) return res.status(500).send('server error');
             res.send({code: 0, message: "login success"});
+            var sql = "update base_admin set last_logintime = now()  where rid = ?";
+            excute(sql, [user.rid], function (err, data) {
+
+            });
         });
     })(req, res, next);
 });
-app.use('/wechat', wechat);
-[ 'upload', 'lbs', 'common', 'clients', 'news',
-    'documents','singlePage', 'peoples', 'users', 'contactinfo', 'advice',
-    'menu', 'consultant','emergency','opinions', 'weixin','question','booking','bookingResult'].forEach(function (module) {
-        app.use('/app/' + module, require('./service/' + module));
-    }
-);
+
 app.use("*", ensureAuthenticated, function (req, res, next) {
     next();
 });
-[ 'admin', 'editor','upload'].forEach(function (module) {
-        app.use('/backend/' + module, require('./service/' + module));
+
+app.use("/backend",require('./service/backend'));
+
+['editor', 'upload'].forEach(function (module) {
+        app.use("/backend/" + module, require('./service/' + module));
     }
 );
+
 app.use(function (req, res, next) {
     var err = new Error('Not Found:' + req.path);
     res.status(404).send(err.message);
@@ -95,9 +104,8 @@ app.use(function (err, req, res) {
 passport.use(new LocalStrategy(
     function (username, password, done) {
         process.nextTick(function () {
-            var sql = "select u.rid,u.domainId,u.username,u.nickname,r.rid as roleId,r.role_name from wg_adminuser u inner join wg_role r on (r.rid = u.role_id) where username = ? and password = md5(?) ";
+            var sql = "select u.rid,u.domainId,u.username,u.nickname,r.rid as roleId,r.role_name,r.type as roleType from base_admin u inner join base_role r on (r.rid = u.role_id) where username = ? and password = md5(?) ";
             excute(sql, [username, password], function (err, data) {
-                console.log(err);
                 return done(err, err || (data && data[0]));
             });
         });
