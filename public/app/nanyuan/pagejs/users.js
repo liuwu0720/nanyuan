@@ -80,9 +80,19 @@ var usersModel=createModel('users',function(modelName){
         vm.onFocus=function(){
         }
 
-        vm.init=function(){
-            //vm.initList();
+        vm.initApp=function(){
             vm.initDepartmentList();
+        }
+
+        vm.init=function(){
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
         }
     });
 });
