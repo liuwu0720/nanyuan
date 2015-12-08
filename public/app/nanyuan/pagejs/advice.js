@@ -56,9 +56,20 @@ var adviceModel=createModel('advice',function(modelName){
             vm.currentAdvice.adviceType=0;
         }
 
-        vm.init=function(){
+        vm.initApp=function(){
             vm.clearData();
             vm.initAdviceTypeList();
+        }
+
+        vm.init=function(){
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
         }
     });
 });

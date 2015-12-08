@@ -85,8 +85,19 @@ var newsModel=createModel('news',function(modelName){
         vm.onFocus=function(){
         }
 
-        vm.init=function(){
+        vm.initApp=function(){
             vm.initList();
+        }
+
+        vm.init=function(){
+            if(clientInfoModel.$initializeStatus=='Y'){
+                vm.initApp();
+            }else{
+                clientInfoModel.$initializeHandler=function(cb){
+                    vm.initApp();
+                    if(cb){cb();}
+                }
+            }
         }
     });
 });
