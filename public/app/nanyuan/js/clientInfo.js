@@ -240,7 +240,6 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             vm.domainInfo.logo = appManager.currentDomainInfo.logo;
             vm.domainInfo.type = appManager.currentDomainInfo.type;
             vm.domainInfo.mobile = appManager.currentDomainInfo.mobile;*/
-            console.log('1111');
             if(vm.$initializeHandlers.length>0){
                 async.eachSeries(vm.$initializeHandlers, function (item, callback) {
                     item(function(){
@@ -248,11 +247,9 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
                     });
                 }, function (err) {
                     vm.$initializeStatus='Y';
-                    console.log('2222');
                 });
             }else{
                 vm.$initializeStatus='Y';
-                console.log('3333');
             }
         }
     });
