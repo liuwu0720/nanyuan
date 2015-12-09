@@ -92,10 +92,10 @@ var documentsModel=createModel('documents',function(modelName){
             if(clientInfoModel.$initializeStatus=='Y'){
                 vm.initApp();
             }else{
-                clientInfoModel.$initializeHandler=function(cb){
+                clientInfoModel.addInitializeHandler(function(cb){
                     vm.initApp();
                     if(cb){cb();}
-                }
+                });
             }
         }
     });
