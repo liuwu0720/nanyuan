@@ -44,7 +44,7 @@ var documentsModel=createModel('documents',function(modelName){
                     var content=null;
                     content='<div class="ui-whitespace" style="background-color:white;padding-top: 20px">'+
                     '<h1 style="font-size: 1.5em">'+vm.currentItem.title+'</h1>'+
-                    '<h6 style="padding-top: 10px">'+vm.currentItem.publishDate+'&nbsp;&nbsp;'+"<span style='color:#6FB1C7'>"+(vm.currentItem.publisher || '福田综管')+'</h6>'+
+                    '<h6 style="padding-top: 10px">'+vm.currentItem.publishDate+'&nbsp;&nbsp;'+"<span style='color:#6FB1C7'>"+(vm.currentItem.publisher || '南园街道')+'</h6>'+
                     '<div style="padding-top: 10px">'+
                     vm.currentItem.content+
                     '</div>'+

@@ -51,14 +51,6 @@ var documents4Model=createModel('documents4',function(modelName){
             ajaxGet('/documents/retrieveDetail',{rid:vm.currentItem.rid},function(result){
                 if(result.code==0) {
                     vm.currentItem.content=result.data.content;
-                    var content=null;
-//                    content='<div class="ui-whitespace" style="background-color:white;padding-top: 20px">'+
-//                    '<h1 style="font-size: 1.5em">'+vm.currentItem.title+'</h1>'+
-//                    '<h6 style="padding-top: 10px">'+vm.currentItem.publishDate+'&nbsp;&nbsp;'+"<span style='color:#6FB1C7'>"+(vm.currentItem.publisher || '福田综管')+'</h6>'+
-//                    '<div style="padding-top: 10px">'+
-//                    vm.currentItem.content+
-//                    '</div>'+
-//                    '</div>';
                     $("#documentsContentDetail").html(vm.currentItem.content);
                 }
             });

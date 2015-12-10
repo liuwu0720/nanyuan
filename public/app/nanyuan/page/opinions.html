@@ -1,16 +1,20 @@
 <section class="ms-controller" ms-controller="opinions">
     <article id="frameMain">
-        <ul class="ui-list ui-list-text ui-list-link">
-            <li class="ui-border-t" ms-repeat="list" ms-click="openOpinionsItem(el)">
-                <h4>{{el.title}}</h4>
-                <div class="ui-txt-info">{{el.publishDate | date("yyyy-MM-dd") | dateFormat}}</div>
-            </li>
-        </ul>
+        <div class="card-block" ms-repeat="list" ms-click="openOpinionsItem(el)">
+            <span class="badge-corner">{{el.publishDate | date("yyyy.MM.dd")}}</span>
+
+            <div class="card-content">
+                <div class="content-text"> {{el.title}}</div>
+            </div>
+            <div class="mask">
+            </div>
+        </div>
     </article>
     <article id="frameOpinionsDetail" style="display:none">
         <ul class="ui-list ui-list-pure">
             <li>
                 <h4>{{currentItem.title}}</h4>
+
                 <p width="100%" align="right"><span>{{currentItem.rowCount}}个人发表意见</span></p>
             </li>
         </ul>
@@ -26,9 +30,16 @@
                 </div>
                 <div class="ui-list-info">
                     <p style="font-size:0.8em">{{el.username}}</p>
-                    <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}} {{el.creDate | date("HH:mm")}}</p>
+
+                    <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}} {{el.creDate |
+                        date("HH:mm")}}</p>
+
                     <p>{{el.description}}</p>
-                    <p width="90%" align="right" ms-click="addFavorite(el)" ms-css-color="el.myFavoriteCount>0?'red':''">{{el.favoriteCount}}<i class="iconfont-1" style="font-size:1.6em;">&#xe630;</i></p>
+
+                    <p width="90%" align="right" ms-click="addFavorite(el)"
+                       ms-css-color="el.myFavoriteCount>0?'red':''">{{el.favoriteCount}}<i class="iconfont-1"
+                                                                                           style="font-size:1.6em;">
+                        &#xe630;</i></p>
                 </div>
             </li>
         </ul>

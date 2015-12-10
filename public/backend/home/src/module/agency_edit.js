@@ -16,8 +16,6 @@ var AgencyEdit = avalon.define("AgencyEdit", function (vm) {
     vm.obj = {
         type: type,
         department: "",
-        contactMan: "",
-        title: "",
         address: "",
         tel: "",
         lng: "",
@@ -29,7 +27,7 @@ var AgencyEdit = avalon.define("AgencyEdit", function (vm) {
             var position = getPosition();
             if (!position.lat || !position.lng) {
                 return validator.showErrors({
-                    address: "<i class='iconfont'></i>&nbsp;请在地图标注位置"
+                    address: "*&nbsp;请在地图标注位置"
                 })
             }
             vm.obj.lat = position.lat;
@@ -93,29 +91,21 @@ function validateHandler() {
             }
         },
         messages: {
-            contactMan: {
-                required: "<i class='iconfont'></i>&nbsp;填写联系人",
-                maxlength: "<i class='iconfont'></i>&nbsp;长度不超过20字"
-            },
             department: {
-                required: "<i class='iconfont'></i>&nbsp;填写部门",
-                maxlength: "<i class='iconfont'></i>&nbsp;长度不超过50字"
-            },
-            title: {
-                required: "<i class='iconfont'></i>&nbsp;填写职位",
-                maxlength: "<i class='iconfont'></i>&nbsp;长度不超过20字"
+                required: "*&nbsp;填写部门",
+                maxlength: "*&nbsp;长度不超过50字"
             },
             listOrder: {
-                digits: "<i class='iconfont'></i>&nbsp;输入1-100内的整数",
-                range: "<i class='iconfont'></i>&nbsp;输入1-100内的整数"
+                digits: "*&nbsp;输入1-100内的整数",
+                range: "*&nbsp;输入1-100内的整数"
             },
             tel: {
-                required: "<i class='iconfont'></i>&nbsp;填写联系方式",
-                phone: "<i class='iconfont'></i>&nbsp;填写正确的手机或座机号码"
+                required: "*&nbsp;填写联系方式",
+                phone: "*&nbsp;填写正确的手机或座机号码"
             },
             address: {
-                required: "<i class='iconfont'></i>&nbsp;填写详细地址",
-                maxlength: "<i class='iconfont'></i>&nbsp;长度不超过100"
+                required: "*&nbsp;填写详细地址",
+                maxlength: "*&nbsp;长度不超过100"
             }
         },
     }
@@ -208,8 +198,6 @@ module.exports = {
             AgencyEdit.obj = {
                 type: type,
                 department: "",
-                contactMan: "",
-                title: "",
                 address: "",
                 tel: "",
                 lng: "",

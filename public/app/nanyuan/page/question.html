@@ -1,16 +1,12 @@
 <section class="ms-controller" ms-controller="question">
     <article id='frameMain'>
-        <ul class="ui-list ui-list-text ui-border-tb" style="font-size: 0.8em">
-            <li class="ui-border-t" ms-repeat="list" ms-click="retrieveQuestionList(el)">
-                <div class="ui-list-info">
-                    <h4 class="ui-nowrap ui-txt-info">{{el.title}}</h4>
-                </div>
-                <div class="ui-list-action">
-                    <p ms-css-display="el.answerId<=0?'block':'none'" class="ui-txt-highlight">答{{el.questionsCount}}题</p>
-                    <p ms-css-display="el.answerId>0?'block':'none'" align="right" class="ui-txt-muted">已完成</p>
-                </div>
-            </li>
-        </ul>
+        <div class="text-card" ms-repeat="list"  ms-click="retrieveQuestionList(el)">
+            <div class="content">
+                {{el.title}}
+            </div>
+            <span  ms-css-display="el.answerId<=0?'block':'none'"  class="badge-corner">答{{el.questionsCount}}题</span>
+            <span class="badge-corner"  ms-css-display="el.answerId>0?'block':'none'" >已完成</span>
+        </div>
         <span ms-css-display="list.length>0?'none':'block'">暂无问卷</span>
     </article>
 

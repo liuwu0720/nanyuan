@@ -20,7 +20,7 @@ app.disable("x-powered-by");
 app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO, format: ':method :url'}));
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true,limit:10000000}));
 app.use(cookieParser());
 app.use(express.query());
 app.use("/app", session({
@@ -38,7 +38,7 @@ app.use("/app", session({
 }));
 app.use(/^(\/backend|\/editor).*/, session({
     secret: cfg.app_name + '_session',
-    cookie: {maxAge: 3 * 60 * 1000},
+    cookie: {maxAge: 30 * 60 * 1000},
     key: "ny.sid",
     saveUninitialized: true,
     rolling: true,
@@ -51,14 +51,8 @@ app.use(/^(\/backend|\/editor).*/, session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-/*app.use(function (req, res, next) {
- if (req.user || !(/^\/nanyuan(\/backend)+.*(index.html)$/.test(req.url))) {
- return  next();
- } else {
- res.redirect("/backend/login.html");
- }
- });*/
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'pictures')));
 app.use('/wechat', wechat);
 ['upload', 'lbs', 'common', 'clients', 'news',
     'documents', 'singlePage', 'peoples', 'users', 'contactinfo', 'advice',

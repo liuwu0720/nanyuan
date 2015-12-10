@@ -524,9 +524,7 @@ router.post("/saveContact", validate({
         type: ["int", "required"],
         department: ["required"],
         tel: ["required"],
-        title: ["required"],
-        groupName: ["required"],
-        contactMan: ["required"]
+        groupName: ["required"]
     }), function (req, res) {
         var rid = req.param("rid");
         var listOrder = req.param("listOrder");

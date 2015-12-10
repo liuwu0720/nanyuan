@@ -9,7 +9,7 @@ var tpl = require("../html/calculate.html");
 var Paging = require("paging");
 var Position = require("position");
 var pos = [( $(window).width() - 300) / 2 + 80, 50];
-var pageSize = 2;
+var pageSize = 10;
 
 var Calculate = avalon.define("Calculate", function (vm) {
     vm.list = [];
