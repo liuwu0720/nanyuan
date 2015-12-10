@@ -71,11 +71,16 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
         vm.currentAddress="";
         vm.screen="Main";
         vm.$scrollRefreshHandler=null;
-        vm.$initializeHandler=null;
+        vm.$initializeHandlers=[];
         vm.$initializeStatus='N';
 
         vm.currentTabPage=0;
         vm.$initPageParameters={news:{type:1},documents:{type:1}};
+
+        vm.addInitializeHandler=function(handler){
+            vm.$initializeHandlers.push(handler);
+        }
+
         vm.setCurrentTabPage=function(page){
             vm.currentTabPage=page;
         }
@@ -235,8 +240,12 @@ var clientInfoModel=createModel('clientInfo',function(modelName){
             vm.domainInfo.logo = appManager.currentDomainInfo.logo;
             vm.domainInfo.type = appManager.currentDomainInfo.type;
             vm.domainInfo.mobile = appManager.currentDomainInfo.mobile;*/
-            if(vm.$initializeHandler){
-                vm.$initializeHandler(function(){
+            if(vm.$initializeHandlers.length>0){
+                async.eachSeries(vm.$initializeHandlers, function (item, callback) {
+                    item(function(){
+                        callback(null,null);
+                    });
+                }, function (err) {
                     vm.$initializeStatus='Y';
                 });
             }else{
