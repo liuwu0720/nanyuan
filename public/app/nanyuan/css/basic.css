@@ -2071,14 +2071,14 @@ h6, .ui-txt-tips {
 /* ================卡片遮罩UI================= */
 .card-block {
     width: 98%;
-    height: 180px;
+    height: 200px;
     position: relative;
     margin:5px auto;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
-    background-image: url(../images/bg1.jpg);
 }
+
 
 .card-block .badge-corner {
     position: absolute;
@@ -2087,7 +2087,7 @@ h6, .ui-txt-tips {
     line-height: 20px;
     top: 0px;
     right: 0px;
-    opacity: 0.618;
+    opacity: 0.3;
     color: white;
     text-align: center;
     font-size: 12px;
@@ -2139,7 +2139,7 @@ h6, .ui-txt-tips {
 }
 
 .text-card .content {
-    font-size: 16px;
+    font-size: 24px;
     text-align: center;
     color:grey;
     line-height:30px;
@@ -2158,4 +2158,10 @@ h6, .ui-txt-tips {
     font-size: 12px;
     padding:2px 5px;
     letter-spacing: 2px;
+}
+
+.empty{
+    line-height:200px;
+    text-align: center;
+    color:lightgrey;
 }
