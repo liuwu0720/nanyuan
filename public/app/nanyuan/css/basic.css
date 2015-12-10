@@ -2063,10 +2063,10 @@ h6, .ui-txt-tips {
     max-width: 100% !important;
 }
 
-.ui-tab-nav li.current{
+/*.ui-tab-nav li.current{
     background-color: #F3AC58;
     border-bottom: 2px #F3AC58 solid;
-}
+}*/
 
 /* ================卡片遮罩UI================= */
 .card-block {
