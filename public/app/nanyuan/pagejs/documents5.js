@@ -108,10 +108,8 @@ var documentsModel=createModel('documents',function(modelName){
         vm.init=function(){
             if(clientInfoModel.$initializeStatus=='Y'){
                 vm.initApp();
-                console.log('4444');
             }else{
                 clientInfoModel.addInitializeHandler(function(cb){
-                    console.log('5555');
                     documentsModel.initApp();
                     if(cb){cb();}
                 });
