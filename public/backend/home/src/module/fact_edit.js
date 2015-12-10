@@ -5,19 +5,16 @@
  * Time: 下午2:45
  *************************/
 require("jcrop")(jQuery);
-var tpl = require("../html/dynamic_edit.html");
+var tpl = require("../html/fact_edit.html");
 var Position = require("position");
 var Uploader = require("upload");
 var WIDTH_LIMIT = 400;
 var HEIGHT_LIMIT = 272;
 var MIN_LENGTH = 272;
-var editor, dialog, jcrop_api, uploader, isReleased, cropData = {};
+var editor, dialog, jcrop_api, uploader, isReleased, cropData = {},type=2;
 
 var FactEdit = avalon.define("FactEdit", function (vm) {
-    vm.obj = {type: 2, newsImage: "", content: "", title: ""};                                                     // 编辑对象
-    vm.edit = function () {
-        avalon.router.navigate("/dynamic_edit/" + obj.rid || 0);
-    }
+    vm.obj = {type: type, newsImage: "", content: "", title: ""};                                                     // 编辑对象
     vm.save = function () {
         vm.obj.content = editor.getContent();
         if(vm.obj.title = $.trim(vm.obj.title)){
@@ -131,8 +128,8 @@ module.exports = {
     tpl: tpl,
     model: FactEdit,
     render: function (param) {
-        UE.delEditor('info-editor');
-        editor = UE.getEditor('info-editor', {
+        UE.delEditor('fact-editor');
+        editor = UE.getEditor('fact-editor', {
             initialFrameHeight: 300,
             initialFrameWidth: 600,
             autoHeightEnabled: true,
@@ -140,7 +137,7 @@ module.exports = {
             elementPathEnabled: false
         });
         editor.ready(function () {
-            FactEdit.obj = {type: 2, newsImage: "", content: "", title: ""};
+            FactEdit.obj = {type: type, newsImage: "", content: "", title: ""};
             param && param.rid && queryInfoById(param.rid, function (result) {
                 if (result.data) {
                     FactEdit.obj = result.data;

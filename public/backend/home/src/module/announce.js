@@ -5,11 +5,11 @@
  * Time: 下午2:45
  *************************/
 
-var tpl = require("../html/dynamic.html");
+var tpl = require("../html/announce.html");
 var Paging = require("paging");
 var Position = require("position");
 var pos = [( $(window).width() - 300) / 2 + 80, 50];
-var newsType;                              // 资讯类型
+var newsType = 3;                              // 资讯类型
 var pageSize = 8;
 
 var Announce = avalon.define("Announce", function (vm) {
@@ -17,7 +17,7 @@ var Announce = avalon.define("Announce", function (vm) {
     vm.totalItems = 0;
     vm.currentPage = 1;
     vm.edit = function (el) {
-        avalon.router.navigate("/dynamic_edit" + "/" + ((el && el.rid) || 0));
+        avalon.router.navigate("/announce_edit" + "/" + ((el && el.rid) || 0));
     }
     vm.del = function (rid) {
         Dialog.ConfirmBox.confirm("确定删除当前内容吗?", "提示", function () {
@@ -59,7 +59,6 @@ module.exports = {
     tpl: tpl,
     render: function (param) {
         Announce.totalItems = 0;
-        newsType = param.type || 3;
         Announce.currentPage = param.currentPage || 1;
         queryNewsByType({type: newsType, currentPage: Announce.currentPage, pageSize: pageSize});
     }
