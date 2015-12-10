@@ -1,13 +1,14 @@
 <section class="ms-controller" ms-controller="question">
     <article id='frameMain'>
-        <div class="text-card" ms-repeat="list"  ms-click="retrieveQuestionList(el)">
-            <div class="content">
-                {{el.title}}
-            </div>
-            <span  ms-css-display="el.answerId<=0?'block':'none'"  class="badge-corner">答{{el.questionsCount}}题</span>
-            <span class="badge-corner"  ms-css-display="el.answerId>0?'block':'none'" >已完成</span>
-        </div>
-        <span ms-css-display="list.length>0?'none':'block'">暂无问卷</span>
+        <ul style="margin-top: 10px" class="ui-list ui-list-text ui-border-tb" ms-repeat="list" ms-click="retrieveQuestionList(el)">
+            <li>
+                <div class="ui-list-info">
+                    <h4 class="ui-nowrap">{{el.title}}</h4>
+                    <p>共{{el.questionsCount}}题</p>
+                </div>
+                <div ms-attr-class="el.answerId>0?'ui-badge-muted':'ui-badge'">{{el.answerId>0?'已完成':'未答题'}}</div>
+            </li>
+        </ul>
     </article>
 
     <article id='frameQuestionDetail' style="display: none">

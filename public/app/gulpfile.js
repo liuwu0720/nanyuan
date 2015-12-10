@@ -162,6 +162,18 @@ gulp.task('nanyuan_register', function () {
         .pipe(gulp.dest('./release/nanyuan/'));
 });
 
+gulp.task('nanyuan_home', function () {
+    return gulp.src('./nanyuan/home.html')
+        .pipe(usemin({
+            css: [minifyCss(), 'concat'],
+            html: [minifyHtml({empty: true})],
+            js: [uglify(), rev()],
+            js1: [uglify(), rev()],
+            js2: [uglify(), rev()]
+        }))
+        .pipe(gulp.dest('./release/nanyuan/'));
+});
+
 gulp.task('nanyuan_static', function () {
     return gulp.src(['./nanyuan/**/*','!./nanyuan/*.html'])
         .pipe(gulp.dest('./release/nanyuan/'));
@@ -169,7 +181,7 @@ gulp.task('nanyuan_static', function () {
 
 gulp.task('nanyuan', [], function() {
     //gulp.start('app_crm_index','app_crm_register','app_crm_verifierRegister','app_crm_verify','app_crm_static');
-    gulp.start('nanyuan_1_1','nanyuan_1_2','nanyuan_1_3','nanyuan_2_1','nanyuan_2_2','nanyuan_2_3','nanyuan_2_4','nanyuan_3_1','nanyuan_3_2','nanyuan_3_3','nanyuan_3_4','nanyuan_accessRight','nanyuan_register','nanyuan_static');
+    gulp.start('nanyuan_1_1','nanyuan_1_2','nanyuan_1_3','nanyuan_2_1','nanyuan_2_2','nanyuan_2_3','nanyuan_2_4','nanyuan_3_1','nanyuan_3_2','nanyuan_3_3','nanyuan_3_4','nanyuan_accessRight','nanyuan_register','nanyuan_home','nanyuan_static');
 });
 
 gulp.task('default', [], function() {
