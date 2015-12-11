@@ -5,10 +5,10 @@
  * Time: 下午2:45
  *************************/
 
-var tpl = require("../html/setting.html");
-var Uploader = require("upload");
+var tpl = require("../html/setting.tpl");
+var Uploader = require("arale-upload");
 var Position = require("position");
-require("jcrop")(jQuery);
+require("../../spm_modules/jcrop/jquery.Jcrop.js")(jQuery);
 var WIDTH_LIMIT = 400;
 var HEIGHT_LIMIT = 272;
 var MIN_LENGTH = 272;

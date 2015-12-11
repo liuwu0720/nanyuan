@@ -290,4 +290,4 @@ var API = {
         Post("/saveQuestionGroup", {group: obj}, success, error);
     }
 }
-return API;
+module.exports = API;

@@ -4,12 +4,12 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/staff_edit.html");
+var tpl = require("../html/staff_edit.tpl");
 var Select = require('arale-select');
 require("ztree")(jQuery);
-require("jcrop")(jQuery);
+require("../../spm_modules/jcrop/jquery.Jcrop.js")(jQuery);
 var Position = require("position");
-var Uploader = require("upload");
+var Uploader = require("arale-upload");
 var WIDTH_LIMIT = 400;
 var HEIGHT_LIMIT = 272;
 var MIN_LENGTH = 272;

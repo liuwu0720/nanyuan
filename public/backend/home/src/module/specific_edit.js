@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/specific_edit.html");
+var tpl = require("../html/specific_edit.tpl");
 var validator;
 
 var SpecificEdit = avalon.define("SpecificEdit", function (vm) {

@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/policy_edit.html");
+var tpl = require("../html/policy_edit.tpl");
 var Position = require("position");
 var editor;
 

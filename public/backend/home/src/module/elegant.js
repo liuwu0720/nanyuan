@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/elegant.html");
+var tpl = require("../html/elegant.tpl");
 var Paging = require("paging");
 var pageSize = 6;
 var type = 1;

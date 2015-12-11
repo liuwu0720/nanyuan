@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/administrator_edit.html");
+var tpl = require("../html/administrator_edit.tpl");
 var validator,role_id = 2;  // 新增用户默认为普通管理员
 var AdministratorEdit = avalon.define("AdministratorEdit", function (vm) {
     vm.obj =  {

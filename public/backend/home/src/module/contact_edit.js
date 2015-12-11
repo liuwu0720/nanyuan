@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/contact_edit.html");
+var tpl = require("../html/contact_edit.tpl");
 var type = 1;
 var validator;
 

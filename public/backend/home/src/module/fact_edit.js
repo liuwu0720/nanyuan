@@ -4,10 +4,10 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-require("jcrop")(jQuery);
-var tpl = require("../html/fact_edit.html");
+require("../../spm_modules/jcrop/jquery.Jcrop.js")(jQuery);
+var tpl = require("../html/fact_edit.tpl");
 var Position = require("position");
-var Uploader = require("upload");
+var Uploader = require("arale-upload");
 var WIDTH_LIMIT = 400;
 var HEIGHT_LIMIT = 272;
 var MIN_LENGTH = 272;

@@ -1,3 +1,5 @@
+
+
 /**
  * User: Becky
  * Date: 15-8-22
@@ -7,11 +9,11 @@ var $ = window.$ = window.jQuery = require("jquery");
 var _ = window._ = require("underscore");
 var async = window.async = require("async");
 var API = window.API = require("./comm/api");
-var history = require("mmHistory");
-var avalon = require("mmRouter");
+var history = require("../spm_modules/avalon/mmHistory");
+var avalon = require("../spm_modules/avalon/mmRouter");
 var Dialog = window.Dialog = require("arale-dialog");
 var Switchable = require("arale-switchable");
-require("validator")($);
+require("../spm_modules/jquery-validate/1.11.1/jquery.validate")($);
 
 function _moduleHandler(model, params) {
     $("form[action='/backend/upload/image']").remove();                      // 清除上传组件的残留

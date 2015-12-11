@@ -6,7 +6,7 @@
  *************************/
 var editor;
 var introduction;
-var tpl = require("../html/guide.html");
+var tpl = require("../html/guide.tpl");
 var Position = require("position");
 var pos = [( $(window).width() - 300) / 2 + 80, 50];
 var type = 2;

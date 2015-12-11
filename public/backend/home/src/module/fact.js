@@ -5,7 +5,7 @@
  * Time: 下午2:45
  *************************/
 
-var tpl = require("../html/fact.html");
+var tpl = require("../html/fact.tpl");
 var Paging = require("paging");
 var Position = require("position");
 var pos = [( $(window).width() - 300) / 2 + 80, 50];

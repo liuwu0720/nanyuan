@@ -5,7 +5,7 @@
  * Time: 下午2:45
  *************************/
 
-var tpl = require("../html/index.html");
+var tpl = require("../html/index.tpl");
 var Index = avalon.define("Index", function (vm) {
 });
 module.exports = {

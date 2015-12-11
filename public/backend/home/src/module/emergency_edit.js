@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/emergency_edit.html");
+var tpl = require("../html/emergency_edit.tpl");
 
 var EmergencyEdit = avalon.define("EmergencyEdit", function (vm) {
     vm.obj = {};                                                     // 编辑对象

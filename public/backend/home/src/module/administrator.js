@@ -5,7 +5,7 @@
  * Time: 下午2:45
  *************************/
 
-var tpl = require("../html/administrator.html");
+var tpl = require("../html/administrator.tpl");
 var Paging = require("paging");
 var Position = require("position");
 var pageSize = 10;

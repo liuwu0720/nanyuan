@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/survey.html");
+var tpl = require("../html/survey.tpl");
 var Paging = require("paging");
 var Position = require("position");
 var pos = [( $(window).width() - 420) / 2, ( $(window).height() - 400) / 2];

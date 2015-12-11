@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/agency_edit.html");
+var tpl = require("../html/agency_edit.tpl");
 var map = null;                             // 地图对象
 var geocoder = null;                        // 地图解析对象
 var marker = null;                          // 分店标点

@@ -4,7 +4,7 @@
  * Date: 15-9-26
  * Time: 下午2:45
  *************************/
-var tpl = require("../html/staff.html");
+var tpl = require("../html/staff.tpl");
 var Paging = require("paging");
 require("ztree")(jQuery);
 var pageSize = 10;
