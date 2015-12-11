@@ -1,0 +1,11 @@
+<section class="ms-controller" ms-controller="guide">
+    <article id="frameMain" style="display: block;">
+          <ul class="ui-round-table">
+              <li class="ui-round-cell" ms-repeat="groupList">
+                  <a ms-click="openList(el.rid)"><i class="iconfont-1">{{el.icon | html}}</i></a>
+                  <p>{{el.group_name}}</p>
+              </li>
+          </ul>
+    </article>
+</section>
+<script src="pagejs/guide.js"></script>

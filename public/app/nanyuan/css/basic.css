@@ -2073,12 +2073,11 @@ h6, .ui-txt-tips {
     width: 98%;
     height: 200px;
     position: relative;
-    margin:5px auto;
+    margin: 5px auto;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
 }
-
 
 .card-block .badge-corner {
     position: absolute;
@@ -2106,11 +2105,10 @@ h6, .ui-txt-tips {
     box-sizing: border-box;
 }
 
-
 .card-block .card-content {
     width: 100%;
     position: absolute;
-    padding:10px;
+    padding: 10px;
     left: 0;
     bottom: 0px;
     z-index: 999;
@@ -2118,21 +2116,22 @@ h6, .ui-txt-tips {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.content-text{
+
+.content-text {
     height: 60px;
     width: 100%;
-    line-height:20px;
-    overflow:hidden;
-    color:white;
+    line-height: 20px;
+    overflow: hidden;
+    color: white;
 }
 
 .text-card {
     width: 95%;
     position: relative;
     background-color: #F7F7F7;
-    border:1px solid #EAE2E2;
+    border: 1px solid #EAE2E2;
     min-height: 50px;
-    margin:10px auto 0 auto;
+    margin: 10px auto 0 auto;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -2141,9 +2140,9 @@ h6, .ui-txt-tips {
 .text-card .content {
     font-size: 24px;
     text-align: center;
-    color:grey;
-    line-height:30px;
-    padding:10%;
+    color: grey;
+    line-height: 30px;
+    padding: 10%;
 }
 
 .text-card .badge-corner {
@@ -2156,12 +2155,57 @@ h6, .ui-txt-tips {
     color: #6D9E73;
     text-align: center;
     font-size: 12px;
-    padding:2px 5px;
+    padding: 2px 5px;
     letter-spacing: 2px;
 }
 
-.empty{
-    line-height:200px;
+.empty {
+    line-height: 200px;
     text-align: center;
-    color:lightgrey;
+    color: lightgrey;
+}
+
+.ui-round-table, .ui-round-cell {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.ui-round-table:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.ui-round-table .ui-round-cell {
+    float: left;
+    width: 33.33333%;
+    padding: 20px 0 0 0;
+}
+
+.ui-round-table .ui-round-cell > a {
+    display: block;
+    text-decoration: none;
+    width: 86px;
+    height: 86px;
+    line-height: 86px;
+    margin: 0 auto;
+    background: #F7F7F7;
+    border:1px solid #E3E4E4;
+    color: #A7B0B3;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+.ui-round-table .ui-round-cell > a i{
+    font-size:30px;
+}
+
+.ui-round-table .ui-round-cell > p {
+    padding:10px 0;
+    font-size:15px;
+    color:#BEBCC1;
 }

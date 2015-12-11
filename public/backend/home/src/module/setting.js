@@ -15,27 +15,15 @@ var MIN_LENGTH = 272;
 var editor, dialog, jcrop_api, uploader, isReleased, validator, cropData = {}, type = 1;
 
 var Setting = avalon.define("Setting", function (vm) {
-    vm.keyword = {};
-    vm.news1 = {rid: undefined, values: ""};
-    vm.documents2 = {rid: undefined, values: ""};
-    vm.documents1 = {rid: undefined, values: ""};
-    vm.tab_index = 1;
+    vm.news1 = {rid: undefined, values: ""};                // 南园动态
+    vm.news2 = {rid: undefined, values: ""};                // 民生实事
+    vm.documents1 = {rid: undefined, values: ""};           // 政策法规
+    vm.documents2 = {rid: undefined, values: ""};           //办事流程
+
+    vm.tab_index = 2;
 
     vm.switchTab = function (tab_index) {
         vm.tab_index = tab_index;
-    }
-    vm.save = function () {
-        var obj = {};
-        obj.values = handleValues(vm.keyword.values);
-        if (vm.keyword.rid) {
-            obj.rid = vm.keyword.rid;
-        }
-        obj.parameter = "keywords";
-        saveSetting(obj, function (result) {
-            if (result.rid) {
-                vm.keyword.rid = result.rid;
-            }
-        });
     }
 });
 
@@ -78,7 +66,7 @@ function uploadHandler() {
         }
     );
     new Uploader({
-        trigger: '#documents2-upload',
+        trigger: '#news2-upload',
         accept: 'image/*',
         name: "Filedata",
         action: '/backend/upload/image'
@@ -90,7 +78,7 @@ function uploadHandler() {
         }
     );
     new Uploader({
-        trigger: '#documents1-upload',
+        trigger: '#documents2-upload',
         accept: 'image/*',
         name: "Filedata",
         action: '/backend/upload/image'
@@ -99,6 +87,18 @@ function uploadHandler() {
                 data = JSON.parse(data);
             }
             initPannel(3, data);
+        }
+    );
+    new Uploader({
+        trigger: '#documents1-upload',
+        accept: 'image/*',
+        name: "Filedata",
+        action: '/backend/upload/image'
+    }).success(function (data) {
+            if (typeof data === 'string') {
+                data = JSON.parse(data);
+            }
+            initPannel(4, data);
         }
     )
 }
@@ -150,15 +150,15 @@ function initPannel(type, data) {
                             Setting.news1.rid = result.rid;
                         }
                     });
-                } else if (type == 2) {
-                    Setting.documents2.values = data.url;
+                }else if (type == 2) {
+                    Setting.news2.values = data.url;
                     saveSetting({
-                        rid: Setting.documents2.rid,
-                        parameter: "documents2",
-                        values: Setting.documents2.values
+                        rid: Setting.news2.rid,
+                        parameter: "news2",
+                        values: Setting.news2.values
                     }, function (result) {
                         if (result.rid) {
-                            Setting.documents2.rid = result.rid;
+                            Setting.news2.rid = result.rid;
                         }
                     });
                 } else if (type == 3) {
@@ -170,6 +170,17 @@ function initPannel(type, data) {
                     }, function (result) {
                         if (result.rid) {
                             Setting.documents1.rid = result.rid;
+                        }
+                    });
+                } else if (type == 4) {
+                    Setting.documents2.values = data.url;
+                    saveSetting({
+                        rid: Setting.documents2.rid,
+                        parameter: "documents2",
+                        values: Setting.documents2.values
+                    }, function (result) {
+                        if (result.rid) {
+                            Setting.documents2.rid = result.rid;
                         }
                     })
                 }
@@ -239,13 +250,10 @@ function handleValues(values) {
 function querySetting(param) {
     API.setting(function (result) {
         var list = result.data || [];
-        Setting.keyword = _.find(list, {parameter: "keywords"});
-        Setting.keyword.values = (Setting.keyword.values || "").replace(/,/g, "\n");
-        Setting.news1 = _.find(list, {parameter: "news1"}) || {rid: undefined,parameter:"news1",values: ""};
-        ;
-        Setting.documents2 = _.find(list, {parameter: "documents2"}) || {rid: undefined,parameter:"documents2", values: ""};
-        ;
-        Setting.documents1 = _.find(list, {parameter: "documents1"}) || {rid: undefined,parameter:"documents1", values: ""};
+        Setting.news1 = _.findWhere(list, {parameter: "news1"}) || {rid: undefined,parameter:"news1",values: ""};
+        Setting.news2 = _.findWhere(list, {parameter: "news2"}) || {rid: undefined,parameter:"news2",values: ""};
+        Setting.documents2 = _.findWhere(list, {parameter: "documents2"}) || {rid: undefined,parameter:"documents2", values: ""};
+        Setting.documents1 = _.findWhere(list, {parameter: "documents1"}) || {rid: undefined,parameter:"documents1", values: ""};
     });
 }
 

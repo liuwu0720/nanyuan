@@ -90,6 +90,9 @@ var API = {
     docById: function (rid, success, error) {
         Get("/docById", {rid: rid}, success, error);
     },
+    groupByDocType: function (type, success, error) {
+        Get("/groupByType", {document_type: type}, success, error);
+    },
     saveDoc: function (doc, success, error) {
         Post("/saveDoc", doc, success, error);
     },

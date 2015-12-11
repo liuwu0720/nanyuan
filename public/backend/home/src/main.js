@@ -227,6 +227,12 @@ avalon.router.get("/calculate" + "/{currentPage:[1-9][0-9]*}", function () {
     _moduleHandler(model, this.params);
 });
 
+// ================== 配置设定 START==================== //
+avalon.router.get("/setting", function () {
+    var model = require("./module/setting");
+    _moduleHandler(model, this.params);
+});
+
 avalon.router.error(function () {
     avalon.router.navigate("/index");
 });

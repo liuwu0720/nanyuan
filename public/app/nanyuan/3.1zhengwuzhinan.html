@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/basic.css">
     <!-- endbuild -->
     <style>
-        #frameContentDetail section{
+        #frameContentDetail section {
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
@@ -24,25 +24,40 @@
 <div id="frameMain" style="display:block">
     <div class="ui-tab">
         <ul class="ui-tab-nav ui-border-b">
-            <li ms-attr-class="clientInfoModel.currentTabPage==0?'current':''" ms-click="documentsModel.switchType(1)" ms-click-1="clientInfoModel.setCurrentTabPage(0)">政策法规</li>
-            <li ms-attr-class="clientInfoModel.currentTabPage==1?'current':''" ms-click="documentsModel.switchType(2)" ms-click-1="clientInfoModel.setCurrentTabPage(1)">办事流程</li>
+            <li ms-attr-class="clientInfoModel.currentTabPage==0?'current':''" ms-click="guideModel.switchType(1)"
+                ms-click-1="clientInfoModel.setCurrentTabPage(0)">政策法规
+            </li>
+            <li ms-attr-class="clientInfoModel.currentTabPage==1?'current':''" ms-click="guideModel.switchType(2)"
+                ms-click-1="clientInfoModel.setCurrentTabPage(1)">办事流程
+            </li>
         </ul>
         <div>
             <div ms-css-display="clientInfoModel.currentTabPage==0?'block':'none'">
-                <div id="documentsScreen1" ms-include-src="{{'./page/documents.html'}}" >
+                <div id="documentsScreen1" ms-include-src="{{'./page/guide.html'}}">
                 </div>
             </div>
             <div ms-css-display="clientInfoModel.currentTabPage==1?'block':'none'">
-                <div id="documentsScreen2" ms-include-src="{{'./page/documents.html'}}">
+                <div id="documentsScreen2" ms-include-src="{{'./page/guide.html'}}">
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="frameContentDetail" class="rich-editor" style="display:none;">
-</div>
-<br>
-
+<article id="frameDocList" ms-controller="docList" style="display: none;">
+    <section class="ui-placehold-img"  ms-if="banner">
+        <span ms-css-background-image="banner"></span>
+    </section>
+    <ul class="ui-list ui-list-text ui-list-link" ms-if="list.length">
+        <li class="ui-border-t" ms-repeat="list" ms-click="openDocumentsItem(el)">
+            <h4>{{el.title}}</h4>
+            <div class="ui-txt-info">{{el.publishDate | date("yyyy-MM-dd") | dateFormat}}</div>
+        </li>
+    </ul>
+    <div ms-if="!list.length" class="empty">
+        <span><i class="iconfont-1">&#xe629;</i>&nbsp;暂无内容</span>
+    </div>
+</article>
+<article id="frameContentDetail" style="display:none;"></article>
 <div width="100%" align="center" class="ui-txt-muted" style="font-size: 0.8em">技术支持：感识科技&nbsp;&nbsp;&nbsp;&nbsp;</div>
 </body>
 
@@ -63,6 +78,7 @@
 <script type="text/javascript" src="js/clientInfo.js"></script>
 <!-- endbuild -->
 <script>
-    clientInfoModel.$initPageParameters={documents:{type:1}};
+    clientInfoModel.$initPageParameters = {documents: {type: 1}};
 </script>
+<script type="text/javascript" src="pagejs/docList.js"></script>
 </html>

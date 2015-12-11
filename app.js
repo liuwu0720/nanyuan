@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({extended: true,limit:10000000}));
 app.use(cookieParser());
 app.use(express.query());
 app.use("/app", session({
-    secret: cfg.app_name + '_session',
+    secret: cfg.app_name + '_app_sess',
     cookie: {maxAge: 30 * 24 * 3600 * 1000},
-    key: "backend.sid",
+    key: "nanyuan.sid",
     saveUninitialized: true,
     rolling: true,
     store: new RedisStore({
@@ -37,9 +37,9 @@ app.use("/app", session({
     })
 }));
 app.use(/^(\/backend|\/editor).*/, session({
-    secret: cfg.app_name + '_session',
+    secret: cfg.app_name + '_sess',
     cookie: {maxAge: 30 * 60 * 1000},
-    key: "ny.sid",
+    key: "backend.sid",
     saveUninitialized: true,
     rolling: true,
     store: new RedisStore({

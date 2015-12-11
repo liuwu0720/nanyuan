@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var util = require('util');
+var path = require('path');
 var cfg = require('../conf/server');
 var formidable = require('formidable');
 var gm = require('gm');
@@ -219,4 +220,12 @@ function compressImageFile(filePath,newFilePath,cb) {
     });
 }
 
+function compress(){
+    var img = path.join(__dirname,"../bg3.jpg");
+    var dest = path.join(__dirname,"../bg3-1.jpg");
+    gm(img).resize(420,360).compress("None").write(dest,function(err){
+        console.log(err);
+    });
+}
+// compress();
 module.exports = router;

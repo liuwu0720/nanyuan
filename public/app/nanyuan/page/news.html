@@ -5,7 +5,7 @@
         </section>
         <ul class="ui-list ui-list-link">
             <li class="ui-border-t" ms-repeat="list" ms-click="openNewsItem(el)">
-                <div class="ui-list-img">
+                <div class="ui-list-img" ms-if="el.newsImage">
                     <span ms-css-background-image="'url('+el.newsImage+')'"></span>
                 </div>
                 <div class="ui-list-info">

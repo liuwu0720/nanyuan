@@ -180,6 +180,7 @@ router.post("/saveOpinion", function (req, res) {
         var title = req.param("title");
         var type = req.param("type", 1);
         var cover = req.param("cover");
+        var content = req.param("content");
         var domainId = req.user.domainId;
         opinionsDao.save({
             rid: rid,
@@ -187,7 +188,8 @@ router.post("/saveOpinion", function (req, res) {
             publisher: req.user.username,
             title: title,
             type: type,
-            cover: cover
+            cover: cover,
+            content:content
         }, function (err, result) {
             if (err) return res.status(500).send('server error');
             res.send({code: 0, data: result});
@@ -347,6 +349,17 @@ router.get("/docByType", validate({
     });
 });
 
+
+router.get("/groupByType", validate({
+    document_type: ["int", "required"]
+}), function (req, res) {
+    var type = req.document_type;
+    documentDao.queryGroupByType(type, req.user.domainId, function (err, result) {
+        if (err) return res.status(500).send('server error');
+        res.send({code: 0, data: result});
+    });
+});
+
 router.post("/delDoc", validate({
         rid: ["int", "required"]
     }),
@@ -363,6 +376,7 @@ router.post("/saveDoc", function (req, res) {
         var content = req.param("content");
         var title = req.param("title");
         var type = req.param("type");
+        var group_id = req.param("group_id");
         var domainId = req.user.domainId;
         documentDao.save({
             rid: rid,
@@ -370,7 +384,8 @@ router.post("/saveDoc", function (req, res) {
             content: content,
             title: title,
             publisher: req.user.nickname,
-            type: type
+            type: type,
+            group_id:group_id
         }, function (err, result) {
             if (err) return res.status(500).send('server error');
             res.send({code: 0, data: result});
@@ -614,7 +629,7 @@ router.get("/questionCalc", validate({
     var pageSize = req.pageSize;
     var currentPage = req.currentPage;
     var groupId = req.param("groupId", -1);
-    questionDao.questionCalc(groupId,req.user.domainId,currentPage, pageSize, function (err, result) {
+    questionDao.questionCalc(groupId, req.user.domainId, currentPage, pageSize, function (err, result) {
         if (err) return res.status(500).send('server error');
         res.send({code: 0, data: result});
     });

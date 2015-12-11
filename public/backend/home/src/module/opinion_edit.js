@@ -14,25 +14,37 @@ var MIN_LENGTH = 272;
 var editor, dialog, jcrop_api, uploader, isReleased, cropData = {};
 
 var OpinionEdit = avalon.define("OpinionEdit", function (vm) {
-    vm.obj = {rid: undefined, cover: "", title: ""};                                                     // 编辑对象
-    vm.save = function () {
-        if (vm.obj.title = $.trim(vm.obj.title)) {
-            if(vm.obj.title.length>200){
-                $(".error span").html("标题不超过200字");
-                $(".error").html("").fadeIn().delay(5000).fadeOut();
+        vm.obj = {rid: undefined, cover: "", title: "", content: ""};                                                     // 编辑对象
+        vm.save = function () {
+            if (!vm.obj.cover) {
+                $(".error-cover span").html("上传封面");
+                $(".error-cover").fadeIn().delay(5000).fadeOut();
+                return;
+            }
+            if (!(vm.obj.title = $.trim(vm.obj.title))) {
+                $(".error-title span").html("标题不能为空");
+                $(".error-title").fadeIn().delay(5000).fadeOut();
+                return;
+            }
+            if (vm.obj.title.length > 50) {
+                $(".error-title span").html("标题不超过50字");
+                $(".error-title").fadeIn().delay(5000).fadeOut();
+                return;
+            }
+            if (!(vm.obj.content = $.trim(vm.obj.content))) {
+                $(".error-content span").html("内容不能为空");
+                $(".error-content").fadeIn().delay(5000).fadeOut();
+                return;
             }
             API.saveOpinion(vm.obj.$model, function (result) {
                 window.history.back();
             });
-        } else {
-            $(".error span").html("标题不能为空");
-            $(".error").fadeIn().delay(5000).fadeOut();
         }
-    }
-    vm.back = function () {
-        window.history.back();
-    }
-});
+        vm.back = function () {
+            window.history.back();
+        }
+    })
+    ;
 
 function queryById(rid, cb) {
     API.opinionById(rid, cb);
@@ -133,7 +145,7 @@ module.exports = {
     tpl: tpl,
     model: OpinionEdit,
     render: function (param) {
-        OpinionEdit.obj = {cover: "",title: ""};
+        OpinionEdit.obj = {rid: undefined, cover: "", title: "", content: ""};
         param && param.rid && queryById(param.rid, function (result) {
             if (result.data) {
                 OpinionEdit.obj = result.data;

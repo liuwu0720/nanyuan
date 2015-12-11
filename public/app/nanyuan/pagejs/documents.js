@@ -60,6 +60,7 @@ var documentsModel=createModel('documents',function(modelName){
             }
         }
 
+
         vm.refreshList=function(cb){
             ajaxGet('/documents/retrieveList',{type:vm.type,arrayLength:vm.list.length},function(result){
                 if(result.code==0) {
