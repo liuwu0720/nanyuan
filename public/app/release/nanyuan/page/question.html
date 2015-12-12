@@ -1,0 +1,46 @@
+<section class="ms-controller" ms-controller="question">
+    <article id='frameMain'>
+        <ul style="margin-top: 10px" class="ui-list ui-list-text ui-border-tb" ms-repeat="list" ms-click="retrieveQuestionList(el)">
+            <li>
+                <div class="ui-list-info">
+                    <h4 class="ui-nowrap">{{el.title}}</h4>
+                    <p>共{{el.questionsCount}}题</p>
+                </div>
+                <div ms-attr-class="el.answerId>0?'ui-badge-muted':'ui-badge'">{{el.answerId>0?'已完成':'未答题'}}</div>
+            </li>
+        </ul>
+    </article>
+
+    <article id='frameQuestionDetail' style="display: none">
+        <ul class="ui-list ui-list-pure ui-border-tb">
+            <li class="ui-border-t">
+                <p><span></span>已回答{{questionIndex}}题,完成{{completedProgress}}</span></p>
+                <h4>题目：{{currentQuestion.title}}</h4>
+            </li>
+        </ul>
+        <div>
+            &nbsp;
+        </div>
+        <ul class="ui-list ui-list-text ui-border-tb">
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelA?'block':'none'" ms-click="selectAnswer('A')">
+                <h4>A：{{currentQuestion.labelA}}</h4>
+            </li>
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelB?'block':'none'" ms-click="selectAnswer('B')">
+                <h4>B：{{currentQuestion.labelB}}</h4>
+            </li>
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelC?'block':'none'" ms-click="selectAnswer('C')">
+                <h4>C：{{currentQuestion.labelC}}</h4>
+            </li>
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelD?'block':'none'" ms-click="selectAnswer('D')">
+                <h4>D：{{currentQuestion.labelD}}</h4>
+            </li>
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelE?'block':'none'" ms-click="selectAnswer('E')">
+                <h4>E：{{currentQuestion.labelE}}</h4>
+            </li>
+            <li class="ui-border-t" ms-css-display="currentQuestion.labelF?'block':'none'" ms-click="selectAnswer('F')">
+                <h4>F：{{currentQuestion.labelF}}</h4>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/question.js"></script>

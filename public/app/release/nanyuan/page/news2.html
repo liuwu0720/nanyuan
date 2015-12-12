@@ -1,0 +1,17 @@
+<section class="ms-controller" ms-controller="news">
+    <article>
+        <section class="ui-placehold-img">
+            <span ms-css-background-image="'url('+banner+')'"></span>
+        </section>
+        <ul class="ui-list ui-list-text ui-list-link">
+            <li class="ui-border-t" ms-repeat="list" ms-click="openNewsItem(el)">
+                <div class="ui-list-info">
+                    <h4>{{el.title}}</h4>
+                    <p>{{el.publishDate | date("yyyy-MM-dd") | dateFormat}}</p>
+                </div>
+                <div class="ui-badge" ms-css-display="clientInfoModel.checkIsNewInfo(el.publishDate)?'block':'none'">new</div>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/news.js"></script>

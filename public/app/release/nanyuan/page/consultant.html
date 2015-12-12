@@ -1,0 +1,75 @@
+<section class="ms-controller" ms-controller="consultant">
+    <article ms-css-display="screenStatus=='L'?'block':'none'">
+        <div class="ui-btn-wrap">
+            <button class="ui-btn" ms-click="addConsultant()">
+                我有问题
+            </button>
+        </div>
+        <ul class="ui-list">
+            <li class="ui-border-t" ms-repeat="list" ms-click="reviewConsultant(el)">
+                <div class="ui-avatar">
+                    <span ms-css-background-image="'url('+el.headimgurl+')'"></span>
+                </div>
+                <div class="ui-list-info">
+                    <p style="font-size:0.8em">{{el.username}}</p>
+                    <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}}  {{el.creDate | date("HH:mm")}}</p>
+                    <p>{{el.questions}}</p>
+                    <p width="100%" align="right" style="font-size:0.8em;" ms-css-display="el.status=='A'?'block':'none'">未答复</p>
+                    <p width="100%" align="right" style="font-size:0.8em;color:red" ms-css-display="el.status=='C'?'block':'none'">已答复</p>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article ms-css-display="screenStatus=='E'?'block':'none'" style="padding-top:5px">
+        <h3 style="margin-top: 20px;margin-left: 10px">请输入您的问题</h3>
+        <div class="ui-form ui-border-t">
+            <form action="#">
+                <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+                    <textarea placeholder="请输入您的问题详细描述(限150个字)" ms-duplex="questions" maxlength="150"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn" ms-click="cancelConsultant()">
+                取消
+            </button>
+            <button class="ui-btn ui-btn-primary" ms-click="saveConsultant()">
+                确定
+            </button>
+        </div>
+    </article>
+    <article ms-css-display="screenStatus=='D'?'block':'none'">
+        <br>
+        <ul class="ui-list">
+            <li class="ui-border-t">
+                <div class="ui-avatar">
+                    <span ms-css-background-image="'url('+currentItem.headimgurl+')'"></span>
+                </div>
+                <div class="ui-list-info">
+                    <p style="font-size:0.8em">{{currentItem.username}}</p>
+                    <p style="font-size:0.8em">{{currentItem.creDate | date("yyyy-MM-dd") | dateFormat}}  {{currentItem.creDate | date("HH:mm")}}</p>
+                    <p>{{currentItem.questions}}</p>
+                </div>
+            </li>
+        </ul>
+        <br ms-css-display="currentItem.status=='C'?'block':'none'">
+        <ul class="ui-list" ms-css-display="currentItem.status=='C'?'block':'none'">
+            <li class="ui-border-t">
+                <div class="ui-avatar">
+                    <span ms-css-background-image="'url('+clientInfoModel.domainInfo.logo+')'"></span>
+                </div>
+                <div class="ui-list-info">
+                    <p style="font-size:0.8em">{{clientInfoModel.domainInfo.domainName}}</p>
+                    <p style="font-size:0.8em">{{currentItem.answerDate | date("yyyy-MM-dd") | dateFormat}}  {{currentItem.answerDate | date("HH:mm")}}</p>
+                    <p>{{currentItem.answer}}</p>
+                </div>
+            </li>
+        </ul>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn" ms-click="cancelConsultant()">
+                返回
+            </button>
+        </div>
+    </article>
+</section>
+<script src="pagejs/consultant.js"></script>

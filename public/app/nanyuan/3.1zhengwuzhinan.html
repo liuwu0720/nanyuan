@@ -21,7 +21,7 @@
 </head>
 
 <body class="ms-controller" ms-controller="clientInfo">
-<div id="frameMain" style="display:block">
+<div id="frameMain" class="page" style="display:block;">
     <div class="ui-tab">
         <ul class="ui-tab-nav ui-border-b">
             <li ms-attr-class="clientInfoModel.currentTabPage==0?'current':''" ms-click="guideModel.switchType(1)"
@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-<article id="frameDocList" ms-controller="docList" style="display: none;">
+<article id="frameDocList" class="page" ms-controller="docList" style="display: none;">
     <section class="ui-placehold-img"  ms-if="banner">
         <span ms-css-background-image="banner"></span>
     </section>
@@ -57,8 +57,8 @@
         <span><i class="iconfont-1">&#xe629;</i>&nbsp;暂无内容</span>
     </div>
 </article>
-<article id="frameContentDetail" style="display:none;"></article>
-<div width="100%" align="center" class="ui-txt-muted" style="font-size: 0.8em">技术支持：感识科技&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<article id="frameContentDetail" class="page" style="display:none;"></article>
+<div class="page-footer">技术支持：感识科技&nbsp;&nbsp;&nbsp;&nbsp;</div>
 </body>
 
 <!-- build:js1 js/3.1.ext.js -->

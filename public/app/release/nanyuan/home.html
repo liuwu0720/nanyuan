@@ -1,0 +1,166 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="initial-scale=1, maximum-scale=1, user-scalable=no"><title>南园民生</title><link href=./css/iconfont.css rel=stylesheet type=text/css><style type=text/css>
+        html, body {
+            background: #080808;
+            padding: 0;
+            margin: 0px;
+            height: 100%;
+            font-size: 14px;
+            font-family: "微软雅黑";
+        }
+        .clearfix:after {
+            clear: both;
+            content: " ";
+            display: block;
+            font-size: 0;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .slider {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        #slideposition {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;;
+            z-index: 500;
+        }
+
+        #slideposition ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #slideposition ul li.indicator {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            background: #ffffff;
+            margin: 0px 7px;
+            padding: 0;
+            -webkit-border-radius: 999px;
+            -moz-border-radius: 999px;
+            border-radius: 999px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #slideposition ul li.indicator.active {
+            background: #ffa730;
+        }
+
+        .main {
+            width: 95%;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .main:after {
+            clear: both;
+            content: " ";
+            display: block;
+            font-size: 0;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .main .menu {
+            height: 80px;
+        }
+
+        .main .menu:first-child {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .main .menu:nth-child(2) {
+            width: 44%;
+            height:170px;
+            float: left;
+        }
+
+        .main .menu:nth-child(3) {
+            width: 54%;
+            float: right;
+        }
+
+        .main .menu:nth-child(4) {
+            width: 54%;
+            float: right;
+            margin-top: 10px;
+        }
+
+        .main .menu:nth-child(5) {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            float: left;
+        }
+
+        .menu a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .menu:first-child a {
+            background-color: #F69F55;
+        }
+
+        .menu a span {
+            color: #FFFFFF;
+            font-size: 16px;;
+            line-height: 80px;
+        }
+
+        .main .menu:nth-child(2) a {
+            background-color: #84288F;
+            line-height: 170px;
+        }
+
+        .menu:nth-child(3) a {
+            background-color: #F4EA33;
+
+        }
+
+        .menu:nth-child(4) a {
+            background-color: #EA1C28;
+
+        }
+        .menu:nth-child(5) a {
+            background-color: #0172BB;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            line-height: 30px;
+            font-size: 0.8em;
+            text-align: center;
+            width: 100%;
+            color: grey;
+        }
+    </style><script src=./lib/jquery.js></script><script type=text/javascript src=./lib/jquery.simpleslider.package.min.js></script></head><body><div style="position: relative;"><div class=slider><div class=slide><img src=images/bg1.jpg style="height: 100%;width:100%;"></div><div class=slide><img src=images/bg2.jpg style="height: 100%;width:100%;"></div><div class=slide><img src=images/bg3.jpg style="height: 100%;width:100%;"></div></div></div><div class=main><div class=menu><a href="/app/weixin/access?domain=1&folder=nanyuan&page=1.1nanyuandongtai"><span><i class=iconfont-1>&#xe635;</i>&nbsp;南园动态</span></a></div><div class=menu><a href="/app/weixin/access?domain=1&folder=nanyuan&page=3.1zhengwuzhinan"><span><i class=iconfont-1>&#xe638;</i>&nbsp;办事指南</span></a></div><div class=menu><a href="/app/weixin/access?domain=1&folder=nanyuan&page=1.2minshengshishi"><span><i class=iconfont-1>&#xe636;</i>&nbsp;民生实事</span></a></div><div class=menu><a href="/app/weixin/access?domain=1&folder=nanyuan&page=1.3tongzhigonggao"><span><i class=iconfont-1>&#xe637;</i>&nbsp;通知公告</span></a></div><div class=menu><a href="/app/weixin/access?domain=1&folder=nanyuan&page=3.5lianxiwomen"><span><i class=iconfont-1>&#xe602;</i>&nbsp;联系我们</span></a></div><div class=clearfix></div></div><div class=footer>技术支持:感识科技</div><script type=text/javascript>
+    $(document).ready(function () {
+        var options = {
+            slides: '.slide', // The name of a slide in the slidesContainer
+            fade: true,
+            useCSS: true,
+            swipe: true,    // Add possibility to Swipe > note that you have to include touchSwipe for this
+            slideTracker: true, // Add a UL with list items to track the current slide
+            slideTrackerID: 'slideposition', // The name of the UL that tracks the slides
+            slideOnInterval: true, // Slide on interval
+            interval: 3000, // Interval to slide on if slideOnInterval is enabled
+            animateDuration: 1500, // Duration of an animation
+            animationEasing: 'easeInOut', // Accepts: linear ease in out in-out snap easeOutCubic easeInOutCubic easeInCirc easeOutCirc easeInOutCirc easeInExpo easeOutExpo easeInOutExpo easeInQuad easeOutQuad easeInOutQuad easeInQuart easeOutQuart easeInOutQuart easeInQuint easeOutQuint easeInOutQuint easeInSine easeOutSine easeInOutSine easeInBack easeOutBack easeInOutBack
+            pauseOnHover: false // Pause when user hovers the slide container
+        };
+        $(".slider").simpleSlider(options);
+    });
+</script></body></html>

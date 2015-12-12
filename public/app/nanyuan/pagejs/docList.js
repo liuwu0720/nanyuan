@@ -6,6 +6,7 @@ var docListModel = createModel('docList', function (modelName) {
         vm.type = clientInfoModel.$initPageParameters.documents.type;
         vm.$groupId = -1;
         vm.banner = "";
+        vm.$banners = {};
 
         vm.init = function () {
             clientInfoModel.setScrollRefreshHandler(vm.onScrollRefreshScreen);
@@ -40,7 +41,10 @@ var docListModel = createModel('docList', function (modelName) {
                 arrayLength: vm.list.length,
                 groupId: groupId
             }, function (result) {
-                vm.banner = result.banner?"url("+result.banner+")":"";
+                vm.banner = vm.$banners[vm.type] ||  "url(" + result.banner + ")";
+                if (vm.banner) {
+                    vm.$banners[vm.type] = vm.banner;
+                }
                 if (result.data && result.data.length) {
                     vm.list.pushArray(result.data);
                 }
@@ -49,7 +53,7 @@ var docListModel = createModel('docList', function (modelName) {
         }
 
 
-        vm.$watch("load-list", function (groupId,doc_type) {
+        vm.$watch("load-list", function (groupId, doc_type) {
             if (vm.$groupId != groupId) {
                 vm.$groupId = groupId;
                 vm.type = doc_type;

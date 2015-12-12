@@ -1,0 +1,101 @@
+<section class="ms-controller" ms-controller="emergencyCreate">
+    <article id="frameMain">
+        <div class="ui-form" ms-css-display="currentEmergency.rid==0?'block':'none'">
+            <div ms-css-display="currentEmergency.type?'block':'none'">
+                <ul class="ui-list ui-list-function ui-border-b">
+                    <li class="ui-border-t" ms-repeat="categoryList" ms-click="changeCategory(el)">
+                        <div class="ui-list-info">
+                            <h4>{{el.category}}</h4>
+                        </div>
+                        <i class="iconfont-1" style="font-size:1.8em;margin-top:5px;margin-right:16px;color:red">{{currentEmergency.category==el.category?'&#xe62b;':'&#xe62a;'}}</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ui-form ui-border-t" ms-css-display="currentEmergency.type?'block':'none'">
+            <div class="ui-form-item ui-form-item-pure ui-form-item-textarea ui-border-b">
+                <textarea placeholder="请输入情况说明" ms-duplex="currentEmergency.description"></textarea>
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="请输入地址" ms-duplex="currentEmergency.address">
+            </div>
+        </div>
+
+        <ul class="ui-grid-trisect" ms-css-display="currentEmergency.type?'block':'none'">
+            <li ms-repeat="currentEmergency.images">
+                <div class="ui-border">
+                    <div class="ui-grid-trisect-img">
+                        <span ms-css-background-image="'url('+el+')'"></span>
+                    </div>
+                </div>
+            </li>
+
+            <li ms-click="uploadImage()">
+                <div class="ui-border">
+                    <div class="ui-grid-trisect-img">
+                        <span style="background-image:url(img/upload.png)"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="ui-form ui-border-t" ms-css-display="currentEmergency.type?'block':'none'">
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="请输入联系人名称" ms-duplex="currentEmergency.contactMan">
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="请输入手机号码" ms-duplex="currentEmergency.mobile">
+            </div>
+        </div>
+        <div class="ui-btn-wrap">
+            <button ms-css-display="currentEmergency.type!=-1?'block':'none'" class="ui-btn-lg ui-btn-primary" ms-click="addEmergencyAddClose()">
+                上报
+            </button>
+            <!--<button class="ui-btn-lg ui-btn-primary" ms-click="createMenu()">-->
+                <!--创建菜单-->
+            <!--</button>-->
+        </div>
+        <ul class="ui-list ui-list-pure">
+            <li class="ui-border-t">
+                <a ms-click="openMyHistoryList()">查看我以往的上报记录</a>
+            </li>
+        </ul>
+    </article>
+    <article id="frameMyEmergencyList" style="display:none">
+        <ul class="ui-list ui-list-function">
+            <li class="ui-border-t" ms-repeat="myHistoryList" >
+                <div class="ui-list-thumb" ms-click="openEmergencyDetail(el)">
+                    <span ms-css-background-image="'url('+el.mainImage+')'"></span>
+                </div>
+                <div class="ui-list-info" ms-click="openEmergencyDetail(el)">
+                    <p style="font-size:0.8em">{{el.creDate | date("yyyy-MM-dd") | dateFormat}}  {{el.creDate | date("HH:mm")}}</p>
+                    <p>{{el.description}}</p>
+                </div>
+                <div class="ui-btn" ms-css-display="el.type?'block':'none'" ms-click="editEmergencyDetail(el)">修改</div>
+            </li>
+        </ul>
+    </article>
+    <article id="frameEmergencyDetail" style="display:none">
+        <div ms-repeat="currentItem.video">
+            <video width="100%" controls="controls">
+                <source ms-attr-src="el" type="video/mp4" >重大事件视频</source>
+            </video>
+        </div>
+        <ul class="ui-list ui-list-pure ui-border-tb">
+            <li>
+                <p style="font-size:0.8em">{{currentItem.creDate | date("yyyy-MM-dd") | dateFormat}}  {{currentItem.creDate | date("HH:mm")}}</p>
+                <p>{{currentItem.description}}</p>
+                <p width="100%" align="right"><i class="iconfont-1" style="color:red;font-size:1.6em" ms-click="openCurrentMap()">&#xe60c;</i></p>
+            </li>
+        </ul>
+        <ul class="ui-grid-trisect">
+            <li ms-repeat="currentItem.images" ms-click="displayPhoto(el)">
+                <div class="ui-border">
+                    <div class="ui-grid-trisect-img">
+                        <span ms-css-background-image="'url('+el+')'"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+</section>
+<script src="pagejs/emergencyCreate.js"></script>
